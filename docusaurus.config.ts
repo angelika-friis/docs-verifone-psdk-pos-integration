@@ -66,7 +66,13 @@ const config: Config = {
           position: 'left',
           label: 'Docs',
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
+        {
+          type: 'docSidebar',
+          sidebarId: 'appSidebar',
+          position: 'left',
+          label: 'App',
+        },
+        {to: '/blog', label: 'Blogg', position: 'left'},
         {
           href: 'https://github.com/JohannesL2/terminal-ux700',
           label: 'GitHub',
@@ -103,7 +109,7 @@ const config: Config = {
               to: '/blog',
             },
             {
-              label: 'Get started',
+              label: 'Kom igång',
               to: '/docs/intro',
             },
           ],

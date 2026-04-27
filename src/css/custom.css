@@ -56,12 +56,20 @@
 }
 
 .navbar__item.navbar__link {
+  position: relative;
   font-weight: 600;
   border-radius: 999px;
-  transition: background-color 160ms ease, color 160ms ease;
+  padding: 0.45rem 0.85rem;
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease,
+    box-shadow 180ms ease;
 }
 
 .navbar__item.navbar__link:hover {
-  background: rgba(33, 74, 99, 0.08);
+  background: linear-gradient(135deg, rgba(255, 214, 158, 0.85), rgba(255, 186, 99, 0.92));
   color: #17324a;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(255, 180, 87, 0.22);
 }
