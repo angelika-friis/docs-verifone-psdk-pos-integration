@@ -62,11 +62,17 @@ const config: Config = {
       items: [
         {
           type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
+          sidebarId: 'appSidebar',
           position: 'left',
+<<<<<<< HEAD
           label: 'Dokumentation',
         },
         {to: '/blog', label: 'Blogg', position: 'left'},
+=======
+          label: 'App',
+        },
+        {to: '/blog', label: 'Blog', position: 'left'},
+>>>>>>> b46b863277691fa6a1e0f16074b7fa0c6c586e12
         {
           href: 'https://github.com/',
           label: 'GitHub',
