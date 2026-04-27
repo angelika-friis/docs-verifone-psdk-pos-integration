@@ -68,7 +68,7 @@ const config: Config = {
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/',
+          href: 'https://github.com/JohannesL2/terminal-ux700',
           label: 'GitHub',
           position: 'right',
         },
@@ -91,7 +91,7 @@ const config: Config = {
           items: [
             {
               label: 'GitHub',
-              href: 'https://github.com/',
+              href: 'https://github.com/JohannesL2/terminal-ux700',
             },
           ],
         },
