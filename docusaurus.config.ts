@@ -66,6 +66,12 @@ const config: Config = {
           position: 'left',
           label: 'Dokumentation',
         },
+        {
+          type: 'docSidebar',
+          sidebarId: 'appSidebar',
+          position: 'left',
+          label: 'App',
+        },
         {to: '/blog', label: 'Blogg', position: 'left'},
         {
           href: 'https://github.com/',
@@ -103,7 +109,7 @@ const config: Config = {
               to: '/blog',
             },
             {
-              label: 'Kom igang',
+              label: 'Kom igång',
               to: '/docs/intro',
             },
           ],
