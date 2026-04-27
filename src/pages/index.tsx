@@ -7,16 +7,16 @@ import styles from './index.module.css';
 
 const cards = [
   {
-    title: 'Kom igang snabbare',
-    text: 'Samla onboarding, SDK-installation och emulatorsteg sa att nya utvecklare kan starta utan att fastna.',
+    title: 'Get started faster',
+    text: 'Bring onboarding, SDK installation and emulator setup together so new developers can get running without delays.',
   },
   {
-    title: 'Forsta betalflodet',
-    text: 'Beskriv startTerminal, pay, print och teardownTerminal med tydliga exempel och felsokning.',
+    title: 'Understand the payment flow',
+    text: 'Document startTerminal, pay, print and teardownTerminal with practical examples and troubleshooting notes.',
   },
   {
-    title: 'Bygg en gemensam handbok',
-    text: 'Anvand sajten som levande dokumentation for utvecklare, testare och framtida contributors.',
+    title: 'Build a shared handbook',
+    text: 'Use the site as living documentation for developers, testers and future contributors.',
   },
 ];
 
@@ -24,7 +24,7 @@ export default function Home(): ReactNode {
   return (
     <Layout
       title="POS App"
-      description="Dokumentation for Verifone POS-integrationen">
+      description="Documentation for the Verifone POS integration">
       <main className={styles.homePage}>
         <section className={styles.heroSection}>
           <div className={styles.heroContent}>
@@ -33,15 +33,15 @@ export default function Home(): ReactNode {
               POS App
             </Heading>
             <p className={styles.lead}>
-              En snygg och tydlig startsida for Android-appen, Verifone Payment
-              SDK och allt teamet behover for att komma igang och bygga vidare.
+              Documentation for the Android project with Verifone Payment SDK,
+              terminal emulation, feature flags and Android Studio setup.
             </p>
             <div className={styles.actions}>
               <Link className="button button--primary button--lg" to="/docs/intro">
-                Oppna dokumentationen
+                Open documentation
               </Link>
               <Link className="button button--secondary button--lg" to="/blog">
-                Las bloggen
+                Read the blog
               </Link>
             </div>
           </div>

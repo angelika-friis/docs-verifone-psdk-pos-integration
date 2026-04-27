@@ -4,7 +4,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'POS App',
-  tagline: 'Dokumentation for Verifone POS-integrationen',
+  tagline: 'Documentation for the Verifone POS integration',
   favicon: 'img/favicon.ico',
 
   future: {
@@ -20,8 +20,8 @@ const config: Config = {
   onBrokenLinks: 'throw',
 
   i18n: {
-    defaultLocale: 'sv',
-    locales: ['sv'],
+    defaultLocale: 'en',
+    locales: ['en'],
   },
 
   presets: [
@@ -64,9 +64,9 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Dokumentation',
+          label: 'Docs',
         },
-        {to: '/blog', label: 'Blogg', position: 'left'},
+        {to: '/blog', label: 'Blog', position: 'left'},
         {
           href: 'https://github.com/',
           label: 'GitHub',
@@ -78,7 +78,7 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Dokumentation',
+          title: 'Docs',
           items: [
             {
               label: 'Intro',
@@ -87,7 +87,7 @@ const config: Config = {
           ],
         },
         {
-          title: 'Projekt',
+          title: 'Project',
           items: [
             {
               label: 'GitHub',
@@ -96,14 +96,14 @@ const config: Config = {
           ],
         },
         {
-          title: 'Utforska',
+          title: 'Explore',
           items: [
             {
-              label: 'Blogg',
+              label: 'Blog',
               to: '/blog',
             },
             {
-              label: 'Kom igang',
+              label: 'Get started',
               to: '/docs/intro',
             },
           ],
