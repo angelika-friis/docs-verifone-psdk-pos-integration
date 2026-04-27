@@ -1,11 +1,119 @@
-.features {
-  display: flex;
-  align-items: center;
-  padding: 2rem 0;
-  width: 100%;
+.homePage {
+  padding: 2rem 1.5rem 4rem;
+  background:
+    radial-gradient(circle at top left, rgba(255, 194, 102, 0.35), transparent 30%),
+    linear-gradient(180deg, #fff7eb 0%, #ffffff 45%, #f6f7fb 100%);
 }
 
-.featureSvg {
-  height: 200px;
-  width: 200px;
+.heroSection {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(280px, 0.9fr);
+  gap: 2rem;
+  align-items: center;
+  padding: 4rem 0 2.5rem;
+}
+
+.heroContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #af5c00;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(3rem, 8vw, 5.75rem);
+  line-height: 0.95;
+  color: #161616;
+}
+
+.lead {
+  max-width: 42rem;
+  margin: 0;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: #4c5566;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding-top: 0.5rem;
+}
+
+.infoCard {
+  background: rgba(22, 22, 22, 0.96);
+  color: #fff8ef;
+  border-radius: 1.75rem;
+  padding: 1.5rem;
+  box-shadow: 0 24px 60px rgba(34, 30, 20, 0.18);
+}
+
+.cardLabel {
+  margin: 0 0 1rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #f8c27c;
+}
+
+.featureList {
+  margin: 0;
+  padding-left: 1.2rem;
+  display: grid;
+  gap: 0.9rem;
+  color: #f7eee1;
+}
+
+.overviewSection {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.overviewCard {
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(175, 92, 0, 0.12);
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 10px 30px rgba(35, 39, 47, 0.06);
+}
+
+.overviewCard h2 {
+  margin-bottom: 0.75rem;
+  font-size: 1.2rem;
+}
+
+.overviewCard p {
+  margin: 0;
+  color: #556070;
+  line-height: 1.65;
+}
+
+@media screen and (max-width: 996px) {
+  .heroSection,
+  .overviewSection {
+    grid-template-columns: 1fr;
+  }
+
+  .homePage {
+    padding-top: 1rem;
+  }
+
+  .heroSection {
+    padding-top: 2rem;
+  }
 }
