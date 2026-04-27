@@ -5,10 +5,19 @@ import Heading from '@theme/Heading';
 
 import styles from './index.module.css';
 
-const highlights = [
-  'Android-app med betalfloden for POS',
-  'Verifone Payment SDK och integrationer',
-  'Setup-guide, terminalfloden och feature flags',
+const cards = [
+  {
+    title: 'Kom igang snabbare',
+    text: 'Samla onboarding, SDK-installation och emulatorsteg sa att nya utvecklare kan starta utan att fastna.',
+  },
+  {
+    title: 'Forsta betalflodet',
+    text: 'Beskriv startTerminal, pay, print och teardownTerminal med tydliga exempel och felsokning.',
+  },
+  {
+    title: 'Bygg en gemensam handbok',
+    text: 'Anvand sajten som levande dokumentation for utvecklare, testare och framtida contributors.',
+  },
 ];
 
 export default function Home(): ReactNode {
@@ -19,32 +28,32 @@ export default function Home(): ReactNode {
       <main className={styles.homePage}>
         <section className={styles.heroSection}>
           <div className={styles.heroContent}>
-            <p className={styles.eyebrow}>Dokumentation</p>
+            <p className={styles.eyebrow}>POS Documentation</p>
             <Heading as="h1" className={styles.title}>
               POS App
             </Heading>
             <p className={styles.lead}>
-              En samlad plats for Android-appen, Verifone Payment SDK,
-              betalfloden och den tekniska setupen.
+              En snygg och tydlig startsida for Android-appen, Verifone Payment
+              SDK och allt teamet behover for att komma igang och bygga vidare.
             </p>
             <div className={styles.actions}>
               <Link className="button button--primary button--lg" to="/docs/intro">
-                Las dokumentationen
+                Oppna dokumentationen
               </Link>
               <Link className="button button--secondary button--lg" to="/blog">
-                Blogg
+                Las bloggen
               </Link>
             </div>
           </div>
+        </section>
 
-          <div className={styles.infoCard}>
-            <p className={styles.cardLabel}>Vad finns har?</p>
-            <ul className={styles.featureList}>
-              {highlights.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </div>
+        <section className={styles.cardGrid}>
+          {cards.map((card) => (
+            <article key={card.title} className={styles.card}>
+              <Heading as="h2">{card.title}</Heading>
+              <p>{card.text}</p>
+            </article>
+          ))}
         </section>
       </main>
     </Layout>

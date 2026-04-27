@@ -53,28 +53,27 @@ const config: Config = {
     colorMode: {
       respectPrefersColorScheme: true,
     },
-   navbar: {
-  title: 'POS App',
-  logo: {
-    alt: 'POS App Logo',
-    src: 'img/logo.svg',
-  },
-  items: [
-    {
-      type: 'docSidebar',
-      sidebarId: 'appSidebar',
-      position: 'left',
-      label: 'Dokumentation',
+    navbar: {
+      title: 'POS App',
+      logo: {
+        alt: 'POS App Logo',
+        src: 'img/logo.svg',
+      },
+      items: [
+        {
+          type: 'docSidebar',
+          sidebarId: 'tutorialSidebar',
+          position: 'left',
+          label: 'Dokumentation',
+        },
+        {to: '/blog', label: 'Blogg', position: 'left'},
+        {
+          href: 'https://github.com/',
+          label: 'GitHub',
+          position: 'right',
+        },
+      ],
     },
-    {to: '/blog', label: 'Blogg', position: 'left'},
-    {
-      href: 'https://github.com/',
-      label: 'GitHub',
-      position: 'right',
-    },
-  ],
-},
-
     footer: {
       style: 'dark',
       links: [
@@ -97,7 +96,7 @@ const config: Config = {
           ],
         },
         {
-          title: 'Innehall',
+          title: 'Utforska',
           items: [
             {
               label: 'Blogg',
