@@ -1,5 +1,5 @@
-import {themes as prismThemes} from 'prism-react-renderer';
-import type {Config} from '@docusaurus/types';
+import { themes as prismThemes } from 'prism-react-renderer';
+import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
@@ -28,9 +28,7 @@ const config: Config = {
     [
       'classic',
       {
-        docs: {
-          sidebarPath: './sidebars.ts',
-        },
+        docs: false,
         blog: {
           showReadingTime: true,
           feedOptions: {
@@ -48,6 +46,27 @@ const config: Config = {
     ],
   ],
 
+  plugins: [
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'integration',
+        path: 'docs-integration-layer',
+        routeBasePath: 'docs/integration',
+        sidebarPath: require.resolve('./src/sidebars/sidebarsIntegration.js'),
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'pos',
+        path: 'docs',
+        routeBasePath: 'docs/app',
+        sidebarPath: require.resolve('./src/sidebars/sidebarsApp.js'),
+      },
+    ],
+  ],
+
   themeConfig: {
     image: 'img/docusaurus-social-card.jpg',
     colorMode: {
@@ -62,17 +81,18 @@ const config: Config = {
       items: [
         {
           type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
-          position: 'left',
-          label: 'Docs',
+          sidebarId: 'docs',
+          docsPluginId: 'pos',
+          label: 'App',
+          position: 'left' 
         },
         {
           type: 'docSidebar',
-          sidebarId: 'appSidebar',
-          position: 'left',
-          label: 'App',
+          sidebarId: 'docs',
+          docsPluginId: 'integration',
+          label: 'Integrations lager',
+          position: 'left' 
         },
-        {to: '/blog', label: 'Blogg', position: 'left'},
         {
           href: 'https://github.com/JohannesL2/terminal-ux700',
           label: 'GitHub',

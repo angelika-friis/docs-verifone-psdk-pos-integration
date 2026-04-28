@@ -139,68 +139,14 @@
 }
 
 .stepBadge {
-  display: inline-block;
-  margin-bottom: 0.6rem;
-  padding: 0.3rem 0.6rem;
+  width: fit-content;
+  margin: 0 0 0.9rem;
+  padding: 0.25rem 0.55rem;
   border-radius: 999px;
-  background: #ede9fe;
-  color: #5b21b6;
-  font-size: 0.8rem;
-  font-weight: 700;
-}
-
-/* IMAGES */
-.imageGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-}
-
-.imageCard {
-  background: #ffffff;
-  border-radius: 1rem;
-  padding: 1rem;
-  text-align: center;
-}
-
-/* ENV */
-.envSection {
-  max-width: 1120px;
-  margin: 0 auto;
-  padding: 2rem;
-  border-radius: 16px;
-  background: #ffffff;
-}
-
-.envSection ul {
-  margin-top: 1rem;
-  padding-left: 1.2rem;
-}
-
-.envSection li {
-  margin-bottom: 0.5rem;
-}
-/* FIX TEXT COLORS */
-
-/* Device cards */
-.imageCard p {
-  color: #1f2937; /* mörk text */
-  font-weight: 500;
-}
-
-/* Labels */
-.imageCard div {
-  color: #6b7280;
+  background: #fff1db;
+  color: #b85c00;
   font-size: 0.85rem;
-}
-
-/* ENV section */
-.envSection {
-  color: #1f2937;
-}
-
-.envSection li {
-  color: #374151;
+  font-weight: 800;
 }
 
 /* RESPONSIVE */
