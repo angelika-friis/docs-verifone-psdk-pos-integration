@@ -14,5 +14,13 @@ export default {
         'app/UI Components/Shopping Cart/Cart Overview',
       ],
     },
+    {
+      type: 'category',
+      label: 'Databas',
+      items: [
+        'app/Database/Intro',
+        'app/Database/Room',
+      ],
+    },
   ],
 };
