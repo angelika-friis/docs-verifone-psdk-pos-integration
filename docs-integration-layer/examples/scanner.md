@@ -1,8 +1,8 @@
 # Exempel: scanner
 
-Scannerflödet består av initiering, start och insamling av resultat.
+**Målgrupp:** konsument av integrationslagret.
 
-## ViewModel
+För scannerregler, se [Scanner](../features/scanner.md).
 
 ```kotlin
 class ScannerViewModel : ViewModel() {
@@ -23,35 +23,9 @@ class ScannerViewModel : ViewModel() {
 }
 ```
 
-## UI-start
-
-`startScanner(...)` behöver en `Activity`.
-
-```kotlin
-val activity = LocalContext.current as Activity
-
-Button(
-    onClick = {
-        ApiModule.terminal.startScanner(
-            activity = activity,
-            behavior = ScanBehavior.SINGLE,
-        )
-    }
-) {
-    Text("Skanna")
-}
-```
-
-För kontinuerlig scanning:
-
 ```kotlin
 ApiModule.terminal.startScanner(
     activity = activity,
-    behavior = ScanBehavior.CONTINUOUS,
+    behavior = ScanBehavior.SINGLE,
 )
 ```
-
-## Resultat
-
-Alla skannade koder kommer via `scannedCode`. UI bör inte använda PSDK:s
-`ScannerListener` direkt.

@@ -1,70 +1,44 @@
 # Anslutning och återanslutning
 
-Terminalanslutningen hanteras av `TerminalConnectionManager`. Den har två
-publika statusflöden via `TerminalApi`:
+**Målgrupp:** utvecklare av integrationslagret.
 
-- `terminalConnected`
-- `terminalReady`
-
-## Startsekvens
-
-Vid fysisk terminal kör `TerminalApiImpl.startTerminal(config)` följande:
-
-1. loggar att SDK initieras
-2. sparar anslutningskonfigurationen i `TerminalConnectionManager`
-3. anropar `runtime.initialize(config)`
-4. väntar på `runtime.awaitInitialized()`
-5. loggar in med `runtime.login()`
-6. publicerar device-information
-7. returnerar `TerminalInitResult.Success` eller `Failure`
-
-Efter start sätter `ApiModule` `terminalConnected` baserat på om resultatet var
-`Success`.
+Publik statussemantik finns i [Status och flöden](../api/state-and-flows.md).
+Den här sidan beskriver intern reconnect-logik.
 
 ## terminalReady
 
-`terminalReady` blir `true` när alla villkor är uppfyllda:
+`TerminalConnectionManager` beräknar `terminalReady` genom att kombinera:
 
-- SDK-initiering har lyckats.
-- PSDK:s `TransactionManager` är `LOGGED_IN`.
-- `terminalConnected` är `true`.
+- lyckad SDK-initiering
+- `TransactionManagerState.LOGGED_IN`
+- `terminalConnected`
 
-Det gör `terminalReady` striktare än `terminalConnected`.
+## Signaler som påverkar anslutning
 
-## Återanslutning
+Manager-klassen lyssnar på:
 
-`TerminalConnectionManager` lyssnar på SDK-signaler som indikerar tappad
-anslutning:
+- `paymentCompleted`
+- `communicationStatus`
+- `notificationEvents`
+- `shouldReconnect`
 
-- `CommunicationStatus.DEVICE_CONNECTION_LOST`
-- `StatusCode.DEVICE_CONNECTION_LOST` från payment completed events
-- `StatusCode.DEVICE_CONNECTION_LOST` från notification events
-- initieringsstatusar där runtime signalerar `shouldReconnect`
+Vid tappad anslutning sätts intern anslutningsstatus till `false`.
 
-När anslutningen tappas:
+## Reconnect
 
-1. `terminalConnected` sätts till `false`.
-2. en reconnect-job schemaläggs om ingen redan körs.
-3. SDK teardown körs.
-4. SDK initieras igen med senaste `TerminalConnectionConfig`.
-5. integrationen väntar på lyckad initiering.
-6. runtime loggar in igen.
-7. device-information publiceras.
-8. `terminalConnected` sätts till `true`.
+Reconnect körs med `Mutex` så att bara ett reconnect-flöde kör samtidigt.
 
-Reconnect skyddas av en `Mutex` för att inte flera återanslutningar ska köras
-samtidigt.
+Sekvens:
 
-## Applikationslagrets ansvar
+1. teardown av runtime
+2. initiering med senast sparade `TerminalConnectionConfig`
+3. väntan på initieringsresultat
+4. login
+5. publicering av device-information
+6. anslutningsstatus sätts till `true`
 
-Applikationslagret ska:
+## Utvecklarregel
 
-- visa terminalstatus från `terminalConnected` och `terminalReady`
-- blockera nya terminalflöden när `terminalReady` är `false`
-- låta integrationslagret hantera reconnect
-
-Applikationslagret ska inte:
-
-- skapa egna reconnect-loopar mot PSDK
-- anropa `startTerminal(...)` igen från UI
-- skapa nya SDK-instanser vid tappad anslutning
+Ny reconnect-logik ska läggas här eller i `SdkRuntime` beroende på om den handlar
+om anslutningspolicy eller SDK-event. Den ska inte läggas i UI, ViewModels eller
+funktionsspecifika payment-metoder.

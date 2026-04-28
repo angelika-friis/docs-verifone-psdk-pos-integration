@@ -1,39 +1,23 @@
 # Nedstängning
 
-Kontrollerad nedstängning görs via:
+**Målgrupp:** utvecklare av integrationslagret.
 
-```kotlin
-val success = ApiModule.terminal.teardownTerminal()
-```
+Den publika metoden finns i [TerminalApi](../api/terminal-api.md). Den här sidan
+beskriver implementationens ansvar.
 
-Metoden finns på `TerminalApi` och implementeras av `TerminalApiImpl`.
+## TerminalApiImpl.teardownTerminal
 
-## Vad teardown gör
+Sekvens:
 
-För fysisk terminal:
-
-1. loggar att logout startar
-2. anropar `runtime.logout()`
-3. avbryter om logout misslyckas
-4. anropar `runtime.teardown()`
-5. avbryter om SDK teardown misslyckas
-6. sätter `terminalConnected` till `false`
-7. returnerar `true`
+1. `SdkRuntime.logout()`
+2. `SdkRuntime.teardown()`
+3. `TerminalConnectionManager.setConnected(false)`
+4. returnera `true` om båda SDK-stegen lyckades
 
 Vid exception loggas felet och metoden returnerar `false`.
 
-## När metoden behövs
+## Begränsning
 
-Vanlig appanvändning behöver normalt inte anropa teardown manuellt. Den är främst
-relevant vid:
-
-- kontrollerad logout från terminalintegration
-- felsökning
-- test där SDK ska stängas ned mellan scenarier
-- explicit byte av integrationsläge i en ny process
-
-## Viktigt
-
-`ApiModule` har inget publikt reset-API som gör hela modulen startbar igen med ny
-konfiguration i samma process. Behandla därför terminalkonfigurationen som
-process-livscykelkonfiguration.
+`ApiModule` har inget publikt reset-API som gör att hela integrationen kan
+konfigureras om i samma process. Konfigurationsregler för konsumenter finns i
+[Konfiguration](../configuration.md).
