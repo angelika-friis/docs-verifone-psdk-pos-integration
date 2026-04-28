@@ -6,66 +6,32 @@ slug: /
 
 # Integrationslagret
 
-Integrationslagret är projektets gräns mot Verifone Payment SDK, PSDK, och
-övriga enhetsnära integrationer som scanner och kvittoskrivare. Lagret ligger i
-Gradle-modulen `api` och används av applikationslagret via `ApiModule.terminal`.
+Integrationslagret är appens publika gräns mot terminal, betalning, scanner och
+utskrift. Applikationslagret ska använda kontraktet
+`TerminalApi`. Verifone Payment SDK eller interna implementationer ska inte användas direkt utav applikationslagret.
 
-Målet är att UI, ViewModels och domänlogik ska slippa känna till PSDK:s
-callback-modell, terminalsessioner, login/logout, återanslutning och
-skrivar-SDK:n. Applikationslagret arbetar i stället mot ett stabilt Kotlin-API
-med `suspend`-funktioner och `Flow`/`StateFlow`.
+## Läsordning
 
-## Huvudprinciper
+För att använda lagret:
 
-- `ApiModule` äger initiering och start av integrationslagret.
-- `TerminalApi` är den publika kontraktytan för applikationslagret.
-- `TerminalApiImpl`, `TerminalConnectionManager`, `SdkRuntime` och serviceklasser
-  är interna implementationer.
-- Verifone SDK behandlas som en process-singleton och ska bara initieras en gång
-  per app-process.
-- Valet mellan mock, on-device och off-device görs innan `ApiModule.start(scope)`.
-- Status observeras via flöden, inte genom egna SDK-anrop från UI.
+1. Börja med [Snabbstart](quick-start.md).
+2. Välj terminalmiljö enligt [Konfiguration](configuration.md).
+3. Läs API-kontraktet i [TerminalApi](api/terminal-api.md).
+4. Hantera status enligt [Status och flöden](api/state-and-flows.md).
+5. Hantera resultat och fel enligt [Felhantering](error-handling.md).
 
-## Ingångar
+## När du behöver mer
 
-Applikationslagret ska normalt bara använda:
+Funktionerna beskrivs separat:
 
-```kotlin
-ApiModule.initialize(context)
-ApiModule.start(appScope)
-val terminal = ApiModule.terminal
-```
+- [Betalningar](features/payments.md)
+- [Refund](features/refund.md)
+- [Void](features/void.md)
+- [Scanner](features/scanner.md)
+- [Kvittoutskrift](features/receipt-printing.md)
 
-`TerminalApi.startTerminal(...)` finns i det publika interfacet eftersom mock och
-verklig implementation delar livscykelkontrakt, men metoden ska i praktiken
-anropas av `ApiModule`, inte direkt från UI eller ViewModels.
+Kända begränsningar finns i [Begränsningar](limitations.md).
 
-## Funktioner
-
-Integrationslagret stödjer:
-
-- terminalinitiering och inloggning mot PSDK
-- on-device-terminal
-- off-device-terminal via TCP/IP
-- emulerad/mockad terminal för utveckling
-- betalning
-- obunden refund
-- void baserat på `appSpecificData`
-- split payment-delar
-- abort av pågående betalningsflöde
-- scanner via terminalen
-- utskrift via Verifone-terminalens skrivare
-- utskrift via Epson-skrivare
-- statusflöden för anslutning, readiness, device info och loggar
-
-## Paketöversikt
-
-- `com.example.testv660p.api` innehåller publikt API och modulstart.
-- `com.example.testv660p.api.model` innehåller publika datamodeller.
-- `com.example.testv660p.internal.runtime` kapslar PSDK-runtime.
-- `com.example.testv660p.internal.terminal` hanterar terminalens livscykel och
-  anslutningsstatus.
-- `com.example.testv660p.internal.payment` hanterar betalningssessioner och
-  mapper SDK-resultat till publika modeller.
-- `com.example.testv660p.internal.printer` hanterar Verifone- och Epson-utskrift.
-- `com.example.testv660p.internal.scanner` hanterar scannerintegration.
+Intern arkitektur och implementation finns i [Arkitektur](architecture.md) och
+[Intern översikt](internal/overview.md). De dokumenten riktar sig till utvecklare
+av integrationslagret.

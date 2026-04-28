@@ -1,44 +1,27 @@
 # Void
 
-Void används för att makulera en tidigare betalning:
+**Målgrupp:** konsument av integrationslagret.
+
+Void makulerar en tidigare betalning med `appSpecificData` från originalköpet.
+API-signaturer finns i [TerminalApi](../api/terminal-api.md).
+
+## Användning
 
 ```kotlin
 val result = ApiModule.terminal.voidPayment(appSpecificData)
 ```
 
-`appSpecificData` kommer från originalbetalningens `PaymentResult.Success`:
+Spara värdet från lyckad betalning:
 
 ```kotlin
-when (val result = terminal.pay(1000)) {
-    is PaymentResult.Success -> save(result.appSpecificData)
-    else -> Unit
+if (result is PaymentResult.Success) {
+    save(result.appSpecificData)
 }
 ```
 
-## Flöde
+## App-lagrets ansvar
 
-När `voidPayment(...)` anropas:
+Integrationslagret kan inte voida en betalning utan `appSpecificData`. App-lagret
+måste därför spara värdet tillsammans med originaltransaktionen.
 
-1. en PSDK-session startas i repositoryt
-2. en `Payment` skapas
-3. `appSpecificData` sätts på betalningsobjektet
-4. `TransactionManager.processVoid(...)` anropas
-5. integrationen väntar på matchande `paymentCompleted`
-6. resultatet mappas till `PaymentResult`
-
-Lyckad void returnerar `PaymentResult.Success` med samma `appSpecificData`.
-
-## Fel
-
-Vanliga fel:
-
-- `StartFailed`: PSDK accepterade inte void-kommandot.
-- `DeviceNotConnected`: terminalanslutningen tappades.
-- `Timeout`: inget matchande completed-event kom inom timeout.
-- `Aborted`: flödet avbröts.
-- `Declined(message)`: void nekades.
-
-## Applikationsansvar
-
-Applikationen måste spara `appSpecificData` från originalbetalningen. Utan det
-värdet kan integrationslagret inte identifiera betalningen som ska voidas.
+Resultat och fel beskrivs i [Felhantering](../error-handling.md).

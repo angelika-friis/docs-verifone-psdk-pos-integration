@@ -1,11 +1,12 @@
 # Kvittoutskrift
 
-Integrationslagret stödjer två utskriftsvägar:
+**Målgrupp:** konsument av integrationslagret.
 
-- Verifone-terminalens skrivare via PSDK
-- Epson-skrivare via Epson ePOS SDK
+Integrationslagret har två utskriftsvägar. API-signaturer finns i
+[TerminalApi](../api/terminal-api.md) och resultatmodellen i
+[Felhantering](../error-handling.md).
 
-## Verifone-terminal
+## Verifone-terminalens skrivare
 
 ```kotlin
 val result = ApiModule.terminal.print(
@@ -14,68 +15,18 @@ val result = ApiModule.terminal.print(
 )
 ```
 
-`PrintContentType`:
+`PrintContentType` kan vara `HTML`, `TEXT` eller `IMAGE`. Se kända begränsningar
+i [Begränsningar](../limitations.md).
 
-- `HTML`
-- `TEXT`
-- `IMAGE`
-
-I nuvarande implementation mappas `IMAGE` till PSDK:s text-content type.
-
-Resultat:
-
-```kotlin
-when (val result = terminal.print(content, PrintContentType.TEXT)) {
-    PrintResult.Success -> Unit
-    is PrintResult.Failure -> show(result.errorMessage)
-}
-```
-
-## Epson
-
-Epson-skrivaren initieras med:
+## Epson-skrivare
 
 ```kotlin
 val initResult = ApiModule.terminal.initializeEpsonPrinter()
-```
-
-Utskrift görs med block:
-
-```kotlin
-val data = EpsonPrintData(
-    blocks = listOf(
-        EpsonPrintBlock.Text("Gardeco", EpsonAlign.CENTER),
-        EpsonPrintBlock.Feed(1),
-        EpsonPrintBlock.Text("Tack för ditt köp"),
-        EpsonPrintBlock.Cut(),
-    )
-)
-
 val result = ApiModule.terminal.printEpson(data)
 ```
 
-Stödda Epson-block:
+`EpsonPrintData` består av block som text, logotyp, feed, cut och barcode.
 
-- `Logo(bitmap)`
-- `Text(text, align)`
-- `Feed(lines)`
-- `Cut(type)`
-- `Barcode(data)`
+## Exempel
 
-## Felhantering
-
-Båda utskriftsvägarna returnerar `PrintResult`.
-
-`PrintResult.Failure` innehåller:
-
-- `errorMessage`: text som kan visas för användaren.
-- `reason`: teknisk text för loggning.
-
-Exempel:
-
-```kotlin
-if (result is PrintResult.Failure) {
-    logger.warn(result.reason)
-    showToast(result.errorMessage)
-}
-```
+Se [Exempel: utskrift](../examples/printing.md).

@@ -1,75 +1,41 @@
 # Initiering
 
-Initiering sker i två steg:
+**Målgrupp:** utvecklare av integrationslagret.
 
-1. `ApiModule.initialize(context)`
-2. `ApiModule.start(scope)`
+Publik startordning finns i [Snabbstart](../quick-start.md). Den här sidan
+beskriver vad implementationen gör.
 
-`initialize(context)` förbereder modulens grundläge. Vid fysisk terminal sparas
-`applicationContext` och `RuntimeProvider.init(appContext)` körs. Vid emulerad
-terminal initieras ingen PSDK-runtime.
+## ApiModule.initialize
 
-## initialize
+`initialize(context)` är idempotent. Vid fysisk terminal initieras
+`RuntimeProvider` med `applicationContext`. Vid emulerad terminal hoppar modulen
+över fysisk runtime.
 
-```kotlin
-ApiModule.initialize(context)
-```
+## ApiModule.start
 
-Metoden är idempotent. Om modulen redan är initierad returnerar den direkt.
-
-Den måste köras före:
-
-```kotlin
-ApiModule.start(scope)
-ApiModule.terminal
-```
-
-Om `ApiModule.terminal` läses före initiering kastas `IllegalStateException` med
-meddelandet `ApiModule not initialized`.
-
-## start
-
-```kotlin
-ApiModule.start(scope)
-```
-
-`start(scope)` kräver att modulen redan är initierad. Metoden är också
-idempotent: första anropet startar integrationen, senare anrop returnerar utan
-att skapa en ny SDK-instans.
+`start(scope)` är idempotent och startar integrationen asynkront.
 
 Vid emulerad terminal:
 
 - `MockTerminalApi` skapas.
-- `startTerminal(...)` körs i den angivna scopet.
+- `startTerminal(...)` körs i angiven scope.
 
 Vid fysisk terminal:
 
-- `TerminalApiFactory.create(appContext, scope)` skapar alla interna tjänster.
-- `TerminalApiImpl.startTerminal(config)` körs i den angivna scopet.
-- `TerminalConnectionManager` uppdateras med startresultatet.
-- `initializeEpsonPrinter()` anropas.
+- `TerminalApiFactory` bygger objektgrafen.
+- `TerminalApiImpl.startTerminal(config)` körs i angiven scope.
+- `TerminalConnectionManager` får startresultatet som anslutningsstatus.
+- Epson-skrivaren initieras.
 
-## Startresultat
+## TerminalApiImpl.startTerminal
 
-`start(scope)` returnerar inte `TerminalInitResult` direkt eftersom start sker
-asynkront. Applikationslagret ska därför lyssna på:
+Startsekvensen är:
 
-- `terminalConnected`
-- `terminalReady`
-- `deviceInfo`
-- `logs`
+1. spara `TerminalConnectionConfig` i `TerminalConnectionManager`
+2. `SdkRuntime.initialize(config)`
+3. `SdkRuntime.awaitInitialized()`
+4. `SdkRuntime.login()`
+5. `SdkRuntime.emitDeviceInformation()`
 
-## Rekommenderad ordning
-
-```kotlin
-ApiModule.setUseEmulatedTerminal(useMock)
-ApiModule.setTerminalConnectionConfig(config)
-ApiModule.initialize(applicationContext)
-ApiModule.start(appScope)
-```
-
-När integrationen är startad:
-
-```kotlin
-val terminalApi = ApiModule.terminal
-```
+Konsumenter ska inte anropa den här metoden direkt; se
+[TerminalApi](../api/terminal-api.md).

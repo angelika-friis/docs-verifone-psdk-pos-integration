@@ -1,18 +1,9 @@
 # Status och flöden
 
-Integrationslagret exponerar både tillstånd och punktvisa händelser via Kotlin
-Flow.
+**Målgrupp:** konsument av integrationslagret.
 
-## terminalConnected
-
-```kotlin
-val terminalConnected: StateFlow<Boolean>
-```
-
-`true` betyder att integrationslagret bedömer att terminalen är ansluten.
-Värdet sätts till `true` efter lyckad terminalstart och kan sättas till `false`
-vid händelser som `DEVICE_CONNECTION_LOST`, misslyckad sessionstart eller
-betalningsfel som indikerar tappad terminal.
+Den här sidan beskriver hur app-lagret ska läsa status från `TerminalApi`.
+Metodlistan finns i [TerminalApi](terminal-api.md).
 
 ## terminalReady
 
@@ -20,14 +11,18 @@ betalningsfel som indikerar tappad terminal.
 val terminalReady: StateFlow<Boolean>
 ```
 
-`terminalReady` är en sammanvägning av:
+Använd detta som primärt villkor för att aktivera terminalflöden i UI.
+`true` betyder att integrationslagret bedömer att terminalen kan ta emot nya
+operationer.
 
-- SDK-initiering lyckades.
-- `TransactionManager` är `LOGGED_IN`.
-- `terminalConnected` är `true`.
+## terminalConnected
 
-Detta är det bästa flödet för UI att använda när det ska avgöra om terminalflöden
-kan startas.
+```kotlin
+val terminalConnected: StateFlow<Boolean>
+```
+
+Visar anslutningsstatus. `terminalReady` är striktare än `terminalConnected` och
+ska användas för åtgärdsknappar.
 
 ## deviceInfo
 
@@ -35,17 +30,8 @@ kan startas.
 val deviceInfo: StateFlow<DeviceInfo?>
 ```
 
-Publiceras efter lyckad initiering och login, när `SdkRuntime.emitDeviceInformation()`
-har läst information från PSDK.
-
-`DeviceInfo` innehåller:
-
-- Payment App-namn och version
-- PSDK-version
-- serienummer
-- tillverkare och modell
-- Android OS-version
-- merchant-information
+Innehåller terminal-, Payment App-, PSDK- och merchant-information när den finns.
+Värdet är `null` innan integrationslagret har publicerat information.
 
 ## logs
 
@@ -53,9 +39,7 @@ har läst information från PSDK.
 val logs: SharedFlow<String>
 ```
 
-`logs` är integrationslagrets egna loggradflöde. Det är avsett för debugvy,
-felsökning och supportnära diagnostik. Det ersätter inte Android Logcat, men ger
-applikationslagret ett enkelt sätt att visa viktiga integrationshändelser.
+Loggrader från integrationslagret för debugvy, support och felsökning.
 
 ## scannedCode
 
@@ -63,11 +47,9 @@ applikationslagret ett enkelt sätt att visa viktiga integrationshändelser.
 val scannedCode: Flow<String>
 ```
 
-Scannerresultat publiceras här efter `initializeScanner()` och
-`startScanner(...)`. Flödet använder en liten buffert och tappar äldsta värdet om
-nya värden kommer snabbare än de konsumeras.
+Scannerresultat. Start av scanner beskrivs i [Scanner](../features/scanner.md).
 
-## Rekommenderad UI-användning
+## Exempel
 
 ```kotlin
 val ready by terminalApi.terminalReady.collectAsState()
@@ -75,5 +57,4 @@ val connected by terminalApi.terminalConnected.collectAsState()
 val deviceInfo by terminalApi.deviceInfo.collectAsState()
 ```
 
-UI bör inte fråga PSDK direkt om status. Om status saknas i `TerminalApi` bör
-kontraktet utökas i integrationslagret.
+UI ska inte fråga PSDK direkt om motsvarande status.

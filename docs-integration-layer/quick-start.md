@@ -1,18 +1,11 @@
----
-id: quick-start
-title: Snabbstart
-slug: /quick-start
----
-
 # Snabbstart
 
-Den normala vägen är att konfigurera och starta integrationslagret en gång när
-appen startar. Därefter används `ApiModule.terminal` från ViewModels,
-use cases eller annan applikationslogik.
+**Målgrupp:** konsument av integrationslagret.
+
+Den här sidan visar minsta rekommenderade startflöde. Detaljer om tillgängliga
+terminalkonfigurationer finns i [Konfiguration](configuration.md).
 
 ## 1. Lägg till beroendet
-
-Applikationsmodulen ska bero på integrationsmodulen:
 
 ```kotlin
 dependencies {
@@ -20,16 +13,7 @@ dependencies {
 }
 ```
 
-Lägg även till i applikationsmodulen/libs:
-- Verifones PSDK (t.ex. PaymentSDK-3.68.14.aar)
-
-### Off-device specifika beroenden
-Lägg till Epson SDK.
-Ladda ner applikation *Epson Print Enabler* på den device där POS applikationen körs.
-
-## 2. Konfigurera vid appstart
-
-Exempel i `Application.onCreate()`:
+## 2. Starta integrationslagret
 
 ```kotlin
 class App : Application() {
@@ -41,18 +25,17 @@ class App : Application() {
         ApiModule.setUseEmulatedTerminal(BuildConfig.USE_EMULATED_TERMINAL)
 
         if (!BuildConfig.USE_EMULATED_TERMINAL) {
-            val config =
+            ApiModule.setTerminalConnectionConfig(
                 if (BuildConfig.USE_LOCAL_TERMINAL) {
                     TerminalConnectionConfig.OnDevice
                 } else {
                     TerminalConnectionConfig.TcpIpClient(
                         address = BuildConfig.OFF_DEVICE_TERMINAL_IP,
-                        forgetPersistedDevice = true,
                         networkConfiguration = NetworkConfiguration.STATIC,
+                        forgetPersistedDevice = true,
                     )
                 }
-
-            ApiModule.setTerminalConnectionConfig(config)
+            )
         }
 
         ApiModule.initialize(this)
@@ -61,38 +44,21 @@ class App : Application() {
 }
 ```
 
-Regler:
-
-- `setUseEmulatedTerminal(...)` måste köras före `start(scope)`.
-- `setTerminalConnectionConfig(...)` måste köras före `start(scope)`.
-- `initialize(context)` måste köras före `start(scope)`.
-- `ApiModule.terminal` får bara läsas efter att modulen har startats.
+`ApiModule.start(scope)` är asynkron. Läs readiness via
+[Status och flöden](api/state-and-flows.md).
 
 ## 3. Använd terminalen
 
 ```kotlin
 class PaymentViewModel : ViewModel() {
-    private val terminalApi = ApiModule.terminal
+    private val terminal = ApiModule.terminal
 
-    val terminalConnected = terminalApi.terminalConnected
-    val terminalReady = terminalApi.terminalReady
-    val deviceInfo = terminalApi.deviceInfo
+    val terminalReady = terminal.terminalReady
 
     suspend fun pay(amountMinorUnits: Int): PaymentResult {
-        return terminalApi.pay(amountMinorUnits)
+        return terminal.pay(amountMinorUnits)
     }
 }
 ```
 
-Belopp anges i minor units. `1000` betyder alltså 10,00 i terminalens valuta.
-
-## 4. Kontrollera readiness
-
-Innan UI erbjuder terminalflöden bör det lyssna på:
-
-- `terminalConnected`: fysisk eller logisk anslutning finns.
-- `terminalReady`: SDK är initierat, TransactionManager är inloggad och terminalen
-  är ansluten.
-
-Ett vanligt UI-villkor är att betalningsknappen bara är aktiv när
-`terminalReady.value == true`.
+Publika metoder och modeller beskrivs i [TerminalApi](api/terminal-api.md).

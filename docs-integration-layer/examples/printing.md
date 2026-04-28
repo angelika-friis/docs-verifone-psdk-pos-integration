@@ -1,18 +1,15 @@
 # Exempel: utskrift
 
-## Verifone-terminalens skrivare
+**Målgrupp:** konsument av integrationslagret.
+
+För utskriftsregler, se [Kvittoutskrift](../features/receipt-printing.md).
+
+## Verifone
 
 ```kotlin
 viewModelScope.launch {
     val result = ApiModule.terminal.print(
-        content = """
-            <html>
-              <body>
-                <h1>Gardeco</h1>
-                <p>Tack för ditt köp</p>
-              </body>
-            </html>
-        """.trimIndent(),
+        content = "<p>Tack för ditt köp</p>",
         contentType = PrintContentType.HTML,
     )
 
@@ -23,7 +20,7 @@ viewModelScope.launch {
 }
 ```
 
-## Epson-skrivare
+## Epson
 
 ```kotlin
 viewModelScope.launch {
@@ -31,10 +28,7 @@ viewModelScope.launch {
         blocks = listOf(
             EpsonPrintBlock.Text("Gardeco", EpsonAlign.CENTER),
             EpsonPrintBlock.Feed(1),
-            EpsonPrintBlock.Text("Order: 12345"),
-            EpsonPrintBlock.Text("Total: 10.00"),
-            EpsonPrintBlock.Feed(2),
-            EpsonPrintBlock.Barcode("12345"),
+            EpsonPrintBlock.Text("Tack för ditt köp"),
             EpsonPrintBlock.Cut(),
         )
     )
@@ -47,8 +41,3 @@ viewModelScope.launch {
     }
 }
 ```
-
-## Rekommendation
-
-Logga `PrintResult.Failure.reason` för felsökning och visa
-`PrintResult.Failure.errorMessage` för användaren.
