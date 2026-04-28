@@ -56,7 +56,7 @@
 
 .actions :global(.button--primary) {
   border: 1px solid rgba(255, 255, 255, 0.08);
-  color: #f7fbff;
+  color: #f7fff7;
   background: linear-gradient(160deg, #17324a 0%, #214a63 55%, #2f6c84 100%);
   box-shadow: 0 18px 34px rgba(20, 48, 68, 0.24);
 }
@@ -177,14 +177,17 @@
 }
 
 .stepBadge {
+  display: inline-block;
   width: fit-content;
   margin: 0 0 0.9rem;
-  padding: 0.25rem 0.55rem;
+  padding: 0.25rem 0.65rem;
   border-radius: 999px;
   background: #fff1db;
   color: #b85c00;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 800;
+  white-space: nowrap;
+  line-height: 1;
 }
 
 @media screen and (max-width: 996px) {
@@ -206,5 +209,60 @@
 
   .homePage {
     padding-top: 1rem;
+  }
+}
+
+/* Dark mode */
+[data-theme='dark'] .homePage {
+  background:
+    radial-gradient(circle at top left, rgba(255, 188, 92, 0.24), transparent 32%),
+    radial-gradient(circle at 85% 15%, rgba(255, 224, 182, 0.65), transparent 24%),
+    linear-gradient(180deg, #1a1a1a 0%, #111111 48%, #171717 100%);
+
+  .heroPanel {
+    background: linear-gradient(160deg, #1a3a55 0%, #25536f 55%, #377894 100%);
+    color: #f3f8fc;
+
+    .heroPanelLabel { color: #25c2a0; }
+    .flowList { color: #f3f8fc; }
+  }
+
+
+  .heroContent {
+    .eyebrow { color: #25c2a0; }
+    .title, .lead { color: #f3f8fc; }
+  }
+
+
+  .sectionIntro {
+    h2, .sectionEyebrow { color: #25c2a0; }
+    p { color: #f3f8fc; }
+  }
+
+  .card {
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(184, 92, 0, 0.24);
+
+    h2, p { color: #f3f8fc; }
+    h3 { color: #25c2a0; }
+  }
+
+  .stepBadge {
+    background: #25c2a0;
+    color: #111111;
+
+    &::before, &::after {
+      background: #25c2a0;
+    }
+  }
+
+  .actions {
+    :global(.button--primary) {
+      background: linear-gradient(160deg, #1a3a55 0%, #25536f 55%, #377894 100%);
+      
+      &:hover {
+        background: linear-gradient(160deg, #1a3a55 0%, #25536f 55%, #377894 100%);
+      }
+    }
   }
 }

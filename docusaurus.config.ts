@@ -79,8 +79,20 @@ const config: Config = {
         src: 'img/logo.svg',
       },
       items: [
-        { to: 'docs/app', label: 'App', position: 'left' },
-        { to: 'docs/integration', label: 'Integrations lager', position: 'left' },
+        {
+          type: 'docSidebar',
+          sidebarId: 'docs',
+          docsPluginId: 'pos',
+          label: 'App',
+          position: 'left' 
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'docs',
+          docsPluginId: 'integration',
+          label: 'Integrations lager',
+          position: 'left' 
+        },
         {
           href: 'https://github.com/JohannesL2/terminal-ux700',
           label: 'GitHub',
