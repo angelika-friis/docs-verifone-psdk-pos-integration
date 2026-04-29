@@ -1,5 +1,5 @@
 import type {ReactNode} from 'react';
-import React, {useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
@@ -52,6 +52,23 @@ const techStack = [
 ];
 
 export default function Home(): ReactNode {
+  const [zoomedImage, setZoomedImage] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!zoomedImage) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setZoomedImage(null);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [zoomedImage]);
+
   const homePageRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const homePage = homePageRef.current;
@@ -115,7 +132,7 @@ For example, Gardeco could integrate this layer into their cash register system 
               className={styles.heroAppIcon} 
             />
 
-              <figure className={styles.visualCard}>
+              <figure className={styles.visualCard} onClick={() => setZoomedImage('/img/hero/off-device.png')}>
                 <img src="/img/hero/off-device.png" alt="Off-device payment flow preview" />
                 <figcaption className={styles.visualBadge}>
       <span className={styles.badgeIcon}>🖥️</span>
@@ -123,7 +140,7 @@ For example, Gardeco could integrate this layer into their cash register system 
     </figcaption>
               </figure>
 
-              <figure className={styles.visualCard}>
+              <figure className={styles.visualCard} onClick={() => setZoomedImage('/img/hero/on-device.png')}>
                 <img src="/img/hero/on-device.png" alt="On-device payment flow preview" />
                 <figcaption className={styles.visualBadge}>
       <span className={styles.badgeIcon}>📱</span>
@@ -205,6 +222,15 @@ For example, Gardeco could integrate this layer into their cash register system 
             </Link>
           </div>
         </section>
+
+        {zoomedImage && (
+          <div className={styles.zoomOverlay} onClick={() => setZoomedImage(null)}>
+            <div className={styles.zoomModal}>
+              <img src={zoomedImage} alt="Zoomed view" />
+              <span className={styles.closeHint}>Click anywhere to close</span>
+            </div>
+          </div>
+        )}
       </main>
     </Layout>
   );
