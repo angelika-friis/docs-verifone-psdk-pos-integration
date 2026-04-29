@@ -1,4 +1,5 @@
 import type {ReactNode} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
@@ -48,6 +49,43 @@ const techStack = [
 ];
 
 export default function Home(): ReactNode {
+
+  const [zoomedImage, setZoomedImage] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!zoomedImage) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setZoomedImage(null);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [zoomedImage]);
+
+  const homePageRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const homePage = homePageRef.current;
+    if (!homePage) return;
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = homePage.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const xPercent = (x / rect.width) * 100;
+      const yPercent = (y / rect.height) * 100;
+      homePage.style.setProperty('--mouse-x', `${xPercent}%`);
+      homePage.style.setProperty('--mouse-y', `${yPercent}%`);
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
+
   return (
     <Layout title="POS App" description="Verifone-style POS payment integration docs for on-device and off-device flows.">
       <main className={styles.homePage}>
@@ -88,12 +126,12 @@ export default function Home(): ReactNode {
               className={styles.heroAppIcon} 
             />
 
-              <figure className={styles.visualCard}>
+              <figure className={styles.visualCard} onClick={() => setZoomedImage('/img/hero/off-device.png')}>
                 <img src="/img/hero/off-device.png" alt="Off-device payment flow preview" />
                 <figcaption>Off-device</figcaption>
               </figure>
 
-              <figure className={styles.visualCard}>
+              <figure className={styles.visualCard} onClick={() => setZoomedImage('/img/hero/on-device.png')}>
                 <img src="/img/hero/on-device.png" alt="On-device payment flow preview" />
                 <figcaption>On-device</figcaption>
               </figure>
@@ -171,6 +209,15 @@ export default function Home(): ReactNode {
             </Link>
           </div>
         </section>
+
+        {zoomedImage && (
+          <div className={styles.zoomOverlay} onClick={() => setZoomedImage(null)}>
+            <div className={styles.zoomModal}>
+              <img src={zoomedImage} alt="Zoomed view" />
+              <span className={styles.closeHint}>Click anywhere to close</span>
+            </div>
+          </div>
+        )}
       </main>
     </Layout>
   );

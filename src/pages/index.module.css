@@ -610,6 +610,76 @@ color: #f8fafc;
   animation-play-state: paused;
 }
 
+/* Zoom Overlay */
+/* Själva triggern på sidan */
+.zoomTrigger {
+  cursor: zoom-in;
+  transition: transform 0.2s ease;
+}
+
+.zoomTrigger:hover {
+  transform: scale(1.02);
+}
+
+/* Bakgrunden som täcker hela skärmen */
+.zoomOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(8px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+[data-theme='dark'] .zoomOverlay {
+  background: rgba(10, 15, 30, 0.9);
+}
+
+.zoomModal {
+  max-width: 90%;
+  max-height: 90vh;
+  position: relative;
+  animation: scaleUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  cursor: pointer;
+}
+
+.zoomModal img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 85vh;
+  border-radius: 12px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.closeHint {
+  display: block;
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.5;
+}
+
+/* Animationer */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleUp {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
 @media (max-width: 996px) {
   .heroSectionInner,
   .cardGrid,
