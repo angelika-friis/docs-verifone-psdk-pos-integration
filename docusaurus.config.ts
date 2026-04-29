@@ -76,7 +76,7 @@ const config: Config = {
       title: 'POS App',
       logo: {
         alt: 'POS App Logo',
-        src: 'img/logo.svg',
+        src: 'img/app_icon.png',
       },
       items: [
         {

@@ -1,4 +1,5 @@
 import type {ReactNode} from 'react';
+import React, {useEffect, useRef} from 'react';
 import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
@@ -6,14 +7,17 @@ import styles from './index.module.css';
 
 const highlights = [
   {
+    step: '01',
     title: 'On-device payments',
     text: 'Keep the checkout inside the app for a fast card-present flow with a polished customer experience.',
   },
   {
+    step: '02',
     title: 'Off-device terminal support',
     text: 'Pair with an external terminal when you need a stable, flexible setup in the field.',
   },
   {
+    step: '03',
     title: 'Clean Android integration',
     text: 'Work through a clear SDK structure, Room database, Gradle build, and modular docs.',
   },
@@ -38,9 +42,28 @@ const flowSteps = [
 ];
 
 export default function Home(): ReactNode {
+  const homePageRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const homePage = homePageRef.current;
+    if (!homePage) return;
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = homePage.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const xPercent = (x / rect.width) * 100;
+      const yPercent = (y / rect.height) * 100;
+      homePage.style.setProperty('--mouse-x', `${xPercent}%`);
+      homePage.style.setProperty('--mouse-y', `${yPercent}%`);
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
+
   return (
     <Layout title="POS App" description="Verifone-style POS payment integration docs for on-device and off-device flows.">
-      <main className={styles.homePage}>
+      <main ref={homePageRef} className={styles.homePage}>
         <section className={styles.heroSection}>
           <div className={styles.heroSectionInner}>
             <div className={styles.heroContent}>
@@ -75,12 +98,18 @@ export default function Home(): ReactNode {
             <div className={styles.heroVisuals}>
               <figure className={styles.visualCard}>
                 <img src="/img/hero/off-device.png" alt="Off-device payment flow preview" />
-                <figcaption>Off-device</figcaption>
+                <figcaption className={styles.visualBadge}>
+      <span className={styles.badgeIcon}>🖥️</span>
+      Off-device
+    </figcaption>
               </figure>
 
               <figure className={styles.visualCard}>
                 <img src="/img/hero/on-device.png" alt="On-device payment flow preview" />
-                <figcaption>On-device</figcaption>
+                <figcaption className={styles.visualBadge}>
+      <span className={styles.badgeIcon}>📱</span>
+      On-device
+    </figcaption>
               </figure>
             </div>
           </div>
@@ -95,6 +124,7 @@ export default function Home(): ReactNode {
           <div className={styles.cardGrid}>
             {highlights.map((card) => (
               <article key={card.title} className={styles.card}>
+                <span className={styles.stepBadge}>{card.step}</span>
                 <Heading as="h3">{card.title}</Heading>
                 <p>{card.text}</p>
               </article>
@@ -123,8 +153,8 @@ export default function Home(): ReactNode {
           <div className={styles.ctaCard}>
             <div>
               <p className={styles.sectionLabel}>NEXT STEP</p>
-              <Heading as="h3">Open the app docs and follow the integration chapters.</Heading>
-              <p>
+              <p className={styles.sectionLabelHeading}>Open the app docs and follow the integration chapters.</p>
+              <p className={styles.sectionLabelText}>
                 The app docs start with the intro page and then move into architecture, UI components, and database
                 structure.
               </p>
