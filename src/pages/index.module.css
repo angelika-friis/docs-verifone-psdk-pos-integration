@@ -181,7 +181,7 @@ color: #f8fafc;
 .actions :global(.button--secondary) {
   background: transparent;
   color: #1e293b;
-  border: 1px solid rgba(30, 41, 59, 0.25);
+  outline: 1px solid rgba(30, 41, 59, 0.25);
 }
 
 .actions :global(.button--secondary:hover) {
