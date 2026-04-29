@@ -1,5 +1,5 @@
 import type {ReactNode} from 'react';
-import React, {useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
@@ -67,7 +67,6 @@ export default function Home(): ReactNode {
     };
   }, [zoomedImage]);
 
-
   const homePageRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const homePage = homePageRef.current;
@@ -127,12 +126,12 @@ export default function Home(): ReactNode {
               className={styles.heroAppIcon} 
             />
 
-              <figure className={styles.visualCard}>
+              <figure className={styles.visualCard} onClick={() => setZoomedImage('/img/hero/off-device.png')}>
                 <img src="/img/hero/off-device.png" alt="Off-device payment flow preview" />
                 <figcaption>Off-device</figcaption>
               </figure>
 
-              <figure className={styles.visualCard}>
+              <figure className={styles.visualCard} onClick={() => setZoomedImage('/img/hero/on-device.png')}>
                 <img src="/img/hero/on-device.png" alt="On-device payment flow preview" />
                 <figcaption>On-device</figcaption>
               </figure>
@@ -210,6 +209,15 @@ export default function Home(): ReactNode {
             </Link>
           </div>
         </section>
+
+        {zoomedImage && (
+          <div className={styles.zoomOverlay} onClick={() => setZoomedImage(null)}>
+            <div className={styles.zoomModal}>
+              <img src={zoomedImage} alt="Zoomed view" />
+              <span className={styles.closeHint}>Click anywhere to close</span>
+            </div>
+          </div>
+        )}
       </main>
     </Layout>
   );
