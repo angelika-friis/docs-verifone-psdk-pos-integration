@@ -1,37 +1,36 @@
 ---
 id: introduction
-title: Introduktion
+title: Introduction
 slug: /
 ---
 
-# Integrationslagret
+# The Integration Layer
 
-Integrationslagret är appens publika gräns mot terminal, betalning, scanner och
-utskrift. Applikationslagret ska använda kontraktet
-`TerminalApi`. Verifone Payment SDK eller interna implementationer ska inte användas direkt utav applikationslagret.
+The integration layer is the application's public interface towards the terminal, payments, scanner, and printing.  
+The application layer must use the `TerminalApi` contract.  
+The Verifone Payment SDK or internal implementations must not be used directly by the application layer.
 
-## Läsordning
+## Start reading
 
-För att använda lagret:
+Choose your use case:
+- Run the existing POS application → [Setup to run POS app](run-pos/run-pos-app.md)
+- Build your own POS application → [Setup integration layer for your own POS application](build-pos/build-pos-app.md)
+- Developing the integration layer → [Architecture](integration-development/architecture.md)
 
-1. Börja med [Snabbstart](quick-start.md).
-2. Välj terminalmiljö enligt [Konfiguration](configuration.md).
-3. Läs API-kontraktet i [TerminalApi](api/terminal-api.md).
-4. Hantera status enligt [Status och flöden](api/state-and-flows.md).
-5. Hantera resultat och fel enligt [Felhantering](error-handling.md).
+## When you need more
 
-## När du behöver mer
+The features are described separately:
 
-Funktionerna beskrivs separat:
+- [Payments](build-pos/features/payments.md)
+- [Refund](build-pos/features/refund.md)
+- [Void](build-pos/features/void.md)
+- [Scanner](build-pos/features/scanner.md)
+- [Receipt printing](build-pos/features/receipt-printing.md)
 
-- [Betalningar](features/payments.md)
-- [Refund](features/refund.md)
-- [Void](features/void.md)
-- [Scanner](features/scanner.md)
-- [Kvittoutskrift](features/receipt-printing.md)
+Known limitations are listed in [Limitations](build-pos/limitations.md).
 
-Kända begränsningar finns i [Begränsningar](limitations.md).
+Internal architecture and implementation are described in [Architecture](integration-development/architecture.md) and  
+[Internal overview](integration-development/internal/overview.md). These documents are intended for developers of the integration layer.
 
-Intern arkitektur och implementation finns i [Arkitektur](architecture.md) och
-[Intern översikt](internal/overview.md). De dokumenten riktar sig till utvecklare
-av integrationslagret.
+Handle state according to [State and flows](api/state-and-flows.md).
+Handle results and errors according to [Error handling](build-pos/error-handling.md).

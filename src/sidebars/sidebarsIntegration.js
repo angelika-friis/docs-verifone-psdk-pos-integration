@@ -1,46 +1,67 @@
 export default {
   docs: [
     'introduction',
-    'quick-start',
-    'configuration',
-    'architecture',
     {
       type: 'category',
-      label: 'Funktioner',
+      label: 'Setup to run POS application',
       items: [
-        'features/payments',
-        'features/refund',
-        'features/void',
-        'features/scanner',
-        'features/receipt-printing',
+        'run-pos/run-pos-app',
       ],
     },
     {
       type: 'category',
-      label: 'Livscykel',
+      label: 'Integrate new POS app',
       items: [
-        'lifecycle/connection',
-        'lifecycle/initialization',
-        'lifecycle/teardown',
+        'build-pos/build-pos-app',
+        'build-pos/configure-terminal',
+        'build-pos/terminal-api',
+        'build-pos/state-and-flows',
+        {
+          type: 'category',
+          label: 'Features',
+          items: [
+            'build-pos/features/refund',
+            'build-pos/features/payments',
+            'build-pos/features/void',
+            'build-pos/features/scanner',
+            'build-pos/features/receipt-printing',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Example',
+          items: [
+            'build-pos/examples/basic-payment',
+            'build-pos/examples/printing',
+            'build-pos/examples/scanner',
+          ],
+        },
+        'build-pos/error-handling',
+        'build-pos/limitations',
       ],
     },
     {
       type: 'category',
-      label: 'Interna funktioner',
+      label: 'Develop integration layer',
       items: [
-        'internal/overview',
+        'integration-development/architecture',
+        {
+          type: 'category',
+          label: 'Lifecycle',
+          items: [
+            'integration-development/lifecycle/initialization',
+            'integration-development/lifecycle/connection',
+            'integration-development/lifecycle/teardown',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Internal functions',
+          items: [
+            'integration-development/internal/overview',
+          ],
+        },
       ],
     },
-    {
-      type: 'category',
-      label: 'Exempel',
-      items: [
-        'examples/basic-payment',
-        'examples/printing',
-        'examples/scanner',
-      ],
-    },
-    'limitations',
-    'error-handling',
   ],
 };
