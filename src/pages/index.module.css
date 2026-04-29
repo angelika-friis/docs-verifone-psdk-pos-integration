@@ -27,11 +27,18 @@
 }
 
 [data-theme='dark'] .homePage {
-background: 
+color: #f8fafc;
+  --mouse-glow-color: rgba(139, 92, 246, 0.3);
+  --mouse-glow-size: 50%;
+  background: 
+    radial-gradient(
+      circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      var(--mouse-glow-color),
+      transparent var(--mouse-glow-size)
+    ),
     radial-gradient(circle at 15% 20%, rgba(139, 92, 246, 0.15), transparent 30%),
     radial-gradient(circle at 80% 15%, rgba(59, 130, 246, 0.1), transparent 30%),
     linear-gradient(180deg, #020617 0%, #0f172a 50%, #020617 100%);
-  color: #f8fafc;
 }
 
 .heroSection {
@@ -204,10 +211,16 @@ background:
   justify-content: center;
   padding: 0.55rem 0.9rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(81, 81, 81, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.12);
-  color: rgba(255, 255, 255, 0.9);
+  color: #1e293b;
   font-size: 0.92rem;
+}
+
+[data-theme='dark'] .heroPills span {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #f8fafc;
 }
 
 .heroVisuals {
