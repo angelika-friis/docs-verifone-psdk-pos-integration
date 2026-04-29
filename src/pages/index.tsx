@@ -1,5 +1,4 @@
 import type {ReactNode} from 'react';
-import React, {useEffect, useRef} from 'react';
 import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
@@ -7,17 +6,14 @@ import styles from './index.module.css';
 
 const highlights = [
   {
-    step: '01',
     title: 'On-device payments',
     text: 'Keep the checkout inside the app for a fast card-present flow with a polished customer experience.',
   },
   {
-    step: '02',
     title: 'Off-device terminal support',
     text: 'Pair with an external terminal when you need a stable, flexible setup in the field.',
   },
   {
-    step: '03',
     title: 'Clean Android integration',
     text: 'Work through a clear SDK structure, Room database, Gradle build, and modular docs.',
   },
@@ -34,36 +30,17 @@ const flowSteps = [
     title: 'Choose your payment mode',
     text: 'Use on-device checkout for in-app payments or off-device terminal handling for external processing.',
   },
-  {
-    step: '03',
-    title: 'Test and ship confidently',
-    text: 'Validate the user journey with the hero previews, feature pages, and integration guides.',
-  },
+{
+  step: '03',
+  title: 'Integrate and scale the app',
+  text: 'The integration layer is built to be POS-agnostic, allowing any POS application—such as Gardeco—to integrate it directly into its checkout system. It is designed to work seamlessly with the general app architecture, making it easy to extend and deploy across different environments.',
+}
 ];
 
 export default function Home(): ReactNode {
-  const homePageRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const homePage = homePageRef.current;
-    if (!homePage) return;
-    const handleMouseMove = (e: MouseEvent) => {
-      const rect = homePage.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const xPercent = (x / rect.width) * 100;
-      const yPercent = (y / rect.height) * 100;
-      homePage.style.setProperty('--mouse-x', `${xPercent}%`);
-      homePage.style.setProperty('--mouse-y', `${yPercent}%`);
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-    };
-  }, []);
-
   return (
     <Layout title="POS App" description="Verifone-style POS payment integration docs for on-device and off-device flows.">
-      <main ref={homePageRef} className={styles.homePage}>
+      <main className={styles.homePage}>
         <section className={styles.heroSection}>
           <div className={styles.heroSectionInner}>
             <div className={styles.heroContent}>
@@ -73,13 +50,9 @@ export default function Home(): ReactNode {
                 A smooth payment experience for on-device and off-device flows.
               </Heading>
 
-              <p className={styles.lead}>
-           This POS app combines Android integration, terminal handling, and documentation to enable smooth end-to-end checkout flows.
-
-The integration layer (PSDK) is a reusable, POS-agnostic component that acts as a direct integration layer between the POS system and Verifone terminal services, allowing any POS system to integrate it into their checkout flow.
-
-For example, Gardeco could integrate this layer into their cash register system to enable reliable communication with Verifone terminal payment applications without changing their core payment logic.
-              </p>
+            <p className={styles.lead}>
+  This POS app combines Android integration, terminal handling, and documentation to enable smooth end-to-end checkout flows.
+</p>
 
               <div className={styles.actions}>
                 <Link className="button button--primary button--lg" to="/docs/app/intro">
@@ -101,18 +74,12 @@ For example, Gardeco could integrate this layer into their cash register system 
             <div className={styles.heroVisuals}>
               <figure className={styles.visualCard}>
                 <img src="/img/hero/off-device.png" alt="Off-device payment flow preview" />
-                <figcaption className={styles.visualBadge}>
-      <span className={styles.badgeIcon}>🖥️</span>
-      Off-device
-    </figcaption>
+                <figcaption>Off-device</figcaption>
               </figure>
 
               <figure className={styles.visualCard}>
                 <img src="/img/hero/on-device.png" alt="On-device payment flow preview" />
-                <figcaption className={styles.visualBadge}>
-      <span className={styles.badgeIcon}>📱</span>
-      On-device
-    </figcaption>
+                <figcaption>On-device</figcaption>
               </figure>
             </div>
           </div>
@@ -127,7 +94,6 @@ For example, Gardeco could integrate this layer into their cash register system 
           <div className={styles.cardGrid}>
             {highlights.map((card) => (
               <article key={card.title} className={styles.card}>
-                <span className={styles.stepBadge}>{card.step}</span>
                 <Heading as="h3">{card.title}</Heading>
                 <p>{card.text}</p>
               </article>
@@ -156,8 +122,8 @@ For example, Gardeco could integrate this layer into their cash register system 
           <div className={styles.ctaCard}>
             <div>
               <p className={styles.sectionLabel}>NEXT STEP</p>
-              <p className={styles.sectionLabelHeading}>Open the app docs and follow the integration chapters.</p>
-              <p className={styles.sectionLabelText}>
+              <Heading as="h3">Open the app docs and follow the integration chapters.</Heading>
+              <p>
                 The app docs start with the intro page and then move into architecture, UI components, and database
                 structure.
               </p>
