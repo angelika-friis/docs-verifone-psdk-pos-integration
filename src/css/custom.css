@@ -35,3 +35,122 @@
 .navbar__logo img {
   border-radius: 14px;
 }
+
+.footer__copyright {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.footer__copyright::before {
+  content: "";
+  width: 32px;
+  height: 32px;
+  background-image: url('/img/app_icon.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  border-radius: 4px;
+}
+
+/* --- Huvudstyling för Footer --- */
+.footer {
+  position: relative;
+  overflow: hidden;
+  padding: 5rem 0 2rem;
+  /* En extremt subtil bakgrund som släpper igenom din snygga sidbakgrund */
+  background: rgba(248, 250, 252, 0.4); 
+  backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(124, 58, 237, 0.1);
+  transition: all 0.3s ease;
+}
+
+/* Dark Mode anpassning */
+[data-theme='dark'] .footer {
+  background: rgba(15, 23, 42, 0.6);
+  border-top: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+/* --- Dekorativt sken i hörnet --- */
+.footer::before {
+  content: "";
+  position: absolute;
+  bottom: -100px;
+  right: -50px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(124, 58, 237, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* --- Styling av innehållet --- */
+.footer__title {
+  color: #1e293b;
+  font-weight: 800;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.footer a {
+  color: #1e293b;
+}
+
+.footer a:hover {
+  color: var(--ifm-color-primary);
+}
+
+[data-theme='dark'] .footer a {
+  color: #94a3b8;
+}
+
+[data-theme='dark'] .footer__title {
+  color: #ffffff;
+}
+
+.footer__link-item {
+  line-height: 1.8;
+}
+
+.footer__link-item a {
+  color: #64748b;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.footer__link-item a:hover {
+  color: var(--ifm-color-primary);
+  padding-left: 4px; /* Liten "slide"-effekt vid hover */
+  text-decoration: none;
+}
+
+/* --- App-ikonen i footern --- */
+.footer__logo {
+  margin-bottom: 2rem;
+  filter: drop-shadow(0 10px 15px rgba(124, 58, 237, 0.2));
+}
+
+.footer__logo img {
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+}
+
+.footer__logo:hover img {
+  transform: rotate(-5deg) scale(1.1);
+}
+
+/* --- Copyright-sektionen --- */
+.footer__copyright {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  font-size: 0.85rem;
+  color: #94a3b8;
+  text-align: center;
+}
+
+[data-theme='dark'] .footer__copyright {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
