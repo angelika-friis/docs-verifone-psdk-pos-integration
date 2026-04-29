@@ -70,12 +70,15 @@ export default function Home(): ReactNode {
               <p className={styles.eyebrow}>PAYMENT INTEGRATION PLATFORM</p>
 
               <Heading as="h1" className={styles.title}>
-                Build a smooth payment experience for on-device and off-device flows.
+                A smooth payment experience for on-device and off-device flows.
               </Heading>
 
               <p className={styles.lead}>
-                This POS app brings together the Android integration, terminal handling, and documentation you need to
-                move from setup to real checkout flows with less friction.
+           This POS app combines Android integration, terminal handling, and documentation to enable smooth end-to-end checkout flows.
+
+The integration layer (PSDK) is a reusable, POS-agnostic component that acts as a direct integration layer between the POS system and Verifone terminal services, allowing any POS system to integrate it into their checkout flow.
+
+For example, Gardeco could integrate this layer into their cash register system to enable reliable communication with Verifone terminal payment applications without changing their core payment logic.
               </p>
 
               <div className={styles.actions}>
