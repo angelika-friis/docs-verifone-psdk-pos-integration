@@ -53,14 +53,40 @@ export default function AboutPage(): ReactNode {
 
         <section className={styles.banner}>
           <div>
-            <p className={styles.eyebrow}>WHAT TO EXPECT</p>
-            <Heading as="h3">A calm structure, a consistent color system, and a better starting point for the app.</Heading>
+<p className={styles.eyebrow}>WHAT WE BUILT</p>
+
+
+<p>
+  This project was developed during a LIA (Learning in Work) experience, where we designed and implemented POS system from scratch,
+  covering architecture, payment flows, and core system behavior.
+</p>
+
+<p>
+  We started with on-device payments using a terminal and later expanded into off-device flows to support more flexible business scenarios.
+  The payment layer is built on a repository abstraction over an event-driven SDK, providing clean suspending operations,
+  predictable transaction handling, and stable UI integration.
+</p>
+
+<p>
+  The system supports advanced flows such as split payments and refunds
+</p>
+
+<p>
+  Beyond payments, we integrated barcode scanning via the terminal SDK and external printing via Epson ePOS.
+  On-device flows use terminal capabilities combined with our own logic, while off-device flows required additional custom implementations.
+</p>
+
+<p>
+  We implemented our own receipt system instead of relying on terminal-generated receipts. It builds receipts from real transaction data,
+  including products, variants, discounts, VAT, and payment details, and supports bank slips, barcodes, branding, and refund receipts.
+</p>
+
+<p>
+  Product and order management is powered by a structured Room database, enabling reliable handling of variants, pricing logic,
+  and full order lifecycle tracking.
+</p>
           </div>
-          <div style={{ marginTop: '2rem' }}>
- <Link className="button button--primary button--lg" to="/docs/app/architecture">
-  Explore architecture
-</Link>
-</div>
+        
         </section>
       </main>
     </Layout>

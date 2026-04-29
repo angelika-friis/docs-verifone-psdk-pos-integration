@@ -1,11 +1,18 @@
-# Snabbstart
+# Quick start for integrating your own POS app
 
-**Målgrupp:** konsument av integrationslagret.
+This page shows the minimum recommended startup flow when building your own POS application. Details about available
+terminal configurations can be found in [Configuration](build-pos/configure-terminal.md).
 
-Den här sidan visar minsta rekommenderade startflöde. Detaljer om tillgängliga
-terminalkonfigurationer finns i [Konfiguration](configuration.md).
+## Prerequisites
 
-## 1. Lägg till beroendet
+Before starting, make sure the required SDKs are installed:
+
+- Verifone Payment SDK (PSDK)
+- Epson ePOS SDK (for off-device printing)
+
+See [Setup](run-pos/run-pos-app.md) for installation instructions for these dependencies.
+
+## 1. Add the integration module as dependency
 
 ```kotlin
 dependencies {
@@ -13,7 +20,7 @@ dependencies {
 }
 ```
 
-## 2. Starta integrationslagret
+## 2. Initialize the integration layer
 
 ```kotlin
 class App : Application() {
@@ -44,10 +51,10 @@ class App : Application() {
 }
 ```
 
-`ApiModule.start(scope)` är asynkron. Läs readiness via
-[Status och flöden](api/state-and-flows.md).
+`ApiModule.start(scope)` is asynchronous. Read readiness via
+[State and flows](api/state-and-flows.md).
 
-## 3. Använd terminalen
+## 3. Use the terminal
 
 ```kotlin
 class PaymentViewModel : ViewModel() {
@@ -61,4 +68,4 @@ class PaymentViewModel : ViewModel() {
 }
 ```
 
-Publika metoder och modeller beskrivs i [TerminalApi](api/terminal-api.md).
+Public methods and models are described in [TerminalApi](api/terminal-api.md).
