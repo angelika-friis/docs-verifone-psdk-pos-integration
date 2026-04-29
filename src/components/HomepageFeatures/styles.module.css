@@ -14,7 +14,10 @@
   align-items: center;
   padding: 4rem 0 2.5rem;
 }
-
+.heroText {
+  max-width: 75%;
+  word-break: break-word;
+}
 .heroContent {
   display: flex;
   flex-direction: column;

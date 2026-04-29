@@ -1,0 +1,28 @@
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin: 2rem 0;
+}
+
+.card {
+  background: #1e1e1e;
+  border-radius: 16px;
+  padding: 20px;
+  transition: 0.3s;
+  border: 1px solid #2c2c2c;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: #4f8cff;
+}
+
+.card h3 {
+  margin-bottom: 10px;
+}
+
+.card p {
+  color: #ccc;
+}

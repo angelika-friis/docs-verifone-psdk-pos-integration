@@ -79,8 +79,25 @@ const config: Config = {
         src: 'img/logo.svg',
       },
       items: [
-        { to: 'docs/app', label: 'App', position: 'left' },
-        { to: 'docs/integration', label: 'Integrations lager', position: 'left' },
+        {
+          type: 'docSidebar',
+          sidebarId: 'docs',
+          docsPluginId: 'pos',
+          label: 'App',
+          position: 'left',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'docs',
+          docsPluginId: 'integration',
+          label: 'Integrations lager',
+          position: 'left',
+        },
+        {
+          to: '/about',
+          label: 'About',
+          position: 'left',
+        },
         {
           href: 'https://github.com/JohannesL2/terminal-ux700',
           label: 'GitHub',
@@ -96,7 +113,7 @@ const config: Config = {
           items: [
             {
               label: 'Intro',
-              to: '/docs/intro',
+              to: '/docs/app/intro',
             },
           ],
         },
@@ -118,7 +135,7 @@ const config: Config = {
             },
             {
               label: 'Kom igång',
-              to: '/docs/intro',
+              to: '/docs/app/intro',
             },
           ],
         },

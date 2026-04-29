@@ -2,97 +2,116 @@ import type {ReactNode} from 'react';
 import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
-
 import styles from './index.module.css';
 
-const quickStart = [
+const highlights = [
   {
-    step: '1',
-    title: 'Import in Android Studio',
-    text: 'Open the project in Android Studio and prepare the workspace before running the app module.',
+    title: 'On-device payments',
+    text: 'Keep the checkout inside the app for a fast card-present flow with a polished customer experience.',
   },
   {
-    step: '2',
-    title: 'Build and sync Gradle',
-    text: 'Run a clean build, sync the Gradle files and make sure the app module is selected for launch.',
+    title: 'Off-device terminal support',
+    text: 'Pair with an external terminal when you need a stable, flexible setup in the field.',
   },
   {
-    step: '3',
-    title: 'Install Payment SDK',
-    text: 'Add the Verifone PaymentSDK AAR to app/libs so the integration layer can connect to the runtime.',
+    title: 'Clean Android integration',
+    text: 'Work through a clear SDK structure, Room database, Gradle build, and modular docs.',
   },
 ];
 
-const capabilities = [
+const flowSteps = [
   {
-    title: 'Terminal emulation',
-    text: 'Use the emulated terminal mode to test payment and refund flows without a physical device.',
+    step: '01',
+    title: 'Start from the app docs',
+    text: 'Follow the POS app documentation to set up Android Studio, Gradle, and the integration flow.',
   },
   {
-    title: 'Integration contract',
-    text: 'Keep the UI layer focused on PaymentContract while the integration module owns SDK setup and lifecycle.',
+    step: '02',
+    title: 'Choose your payment mode',
+    text: 'Use on-device checkout for in-app payments or off-device terminal handling for external processing.',
   },
   {
-    title: 'Feature flags',
-    text: 'Separate debug and release flags so temporary functionality stays easy to control and remove.',
+    step: '03',
+    title: 'Test and ship confidently',
+    text: 'Validate the user journey with the hero previews, feature pages, and integration guides.',
   },
 ];
 
 export default function Home(): ReactNode {
   return (
-    <Layout
-      title="POS App"
-      description="Documentation for the Verifone POS integration">
+    <Layout title="POS App" description="Verifone-style POS payment integration docs for on-device and off-device flows.">
       <main className={styles.homePage}>
         <section className={styles.heroSection}>
-          <div className={styles.heroContent}>
-            <p className={styles.eyebrow}>POS Documentation</p>
-            <Heading as="h1" className={styles.title}>
-              POS App
-            </Heading>
-            <p className={styles.lead}>
-              An Android reference app for Verifone Payment SDK with terminal
-              emulation, refund support, feature flags and an integration layer
-              built to keep UI and payment runtime separated.
-            </p>
-            <div className={styles.actions}>
-              <Link className="button button--primary button--lg" to="/docs/intro">
-                Open documentation
-              </Link>
-              <Link className="button button--secondary button--lg" to="/blog">
-                Read the blog
-              </Link>
-            </div>
-          </div>
+          <div className={styles.heroSectionInner}>
+            <div className={styles.heroContent}>
+              <p className={styles.eyebrow}>PAYMENT INTEGRATION PLATFORM</p>
 
-          <div className={styles.heroPanel}>
-            <p className={styles.heroPanelLabel}>Core flow</p>
-            <Heading as="h2" className={styles.heroPanelTitle}>
-              From setup to payment
-            </Heading>
-            <ul className={styles.flowList}>
-              <li>Import the Android project and sync Gradle</li>
-              <li>Install PaymentSDK-3.68.14.aar in app/libs</li>
-              <li>Start the terminal and run payment or refund flows</li>
-              <li>Print receipts and manage terminal teardown cleanly</li>
-            </ul>
+              <Heading as="h1" className={styles.title}>
+                Build a smooth payment experience for on-device and off-device flows.
+              </Heading>
+
+              <p className={styles.lead}>
+                This POS app brings together the Android integration, terminal handling, and documentation you need to
+                move from setup to real checkout flows with less friction.
+              </p>
+
+              <div className={styles.actions}>
+                <Link className="button button--primary button--lg" to="/docs/app/intro">
+                  Get started
+                </Link>
+                <Link className="button button--secondary button--lg" to="/about">
+                  About us
+                </Link>
+              </div>
+
+              <div className={styles.heroPills} aria-label="Key capabilities">
+                <span>Android Studio</span>
+                <span>Gradle</span>
+                <span>Room</span>
+                <span>Terminal flow</span>
+              </div>
+            </div>
+
+            <div className={styles.heroVisuals}>
+              <figure className={styles.visualCard}>
+                <img src="/img/hero/off-device.png" alt="Off-device payment flow preview" />
+                <figcaption>Off-device</figcaption>
+              </figure>
+
+              <figure className={styles.visualCard}>
+                <img src="/img/hero/on-device.png" alt="On-device payment flow preview" />
+                <figcaption>On-device</figcaption>
+              </figure>
+            </div>
           </div>
         </section>
 
-        <section className={styles.quickStartSection}>
-          <div className={styles.sectionIntro}>
-            <p className={styles.sectionEyebrow}>Quick start</p>
-            <Heading as="h2">The first things a developer needs</Heading>
-            <p>
-              The zipped project already tells us what matters most: Android
-              Studio setup, Gradle build, Payment SDK installation and emulator
-              readiness.
-            </p>
+        <section className={styles.section}>
+          <div className={styles.sectionHeading}>
+            <p className={styles.sectionLabel}>WHAT IT HELPS WITH</p>
+            <Heading as="h2">A clearer path from documentation to checkout.</Heading>
           </div>
-          <div className={styles.quickStartGrid}>
-            {quickStart.map((item) => (
-              <article key={item.title} className={styles.card}>
-                <p className={styles.stepBadge}>{item.step}</p>
+
+          <div className={styles.cardGrid}>
+            {highlights.map((card) => (
+              <article key={card.title} className={styles.card}>
+                <Heading as="h3">{card.title}</Heading>
+                <p>{card.text}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className={styles.section}>
+          <div className={styles.sectionHeading}>
+            <p className={styles.sectionLabel}>HOW TO MOVE FORWARD</p>
+            <Heading as="h2">Use the docs as a guided flow, not a wall of text.</Heading>
+          </div>
+
+          <div className={styles.stepGrid}>
+            {flowSteps.map((item) => (
+              <article key={item.title} className={styles.stepCard}>
+                <span className={styles.stepBadge}>{item.step}</span>
                 <Heading as="h3">{item.title}</Heading>
                 <p>{item.text}</p>
               </article>
@@ -100,13 +119,20 @@ export default function Home(): ReactNode {
           </div>
         </section>
 
-        <section className={styles.cardGrid}>
-          {capabilities.map((card) => (
-            <article key={card.title} className={styles.card}>
-              <Heading as="h2">{card.title}</Heading>
-              <p>{card.text}</p>
-            </article>
-          ))}
+        <section className={styles.ctaSection}>
+          <div className={styles.ctaCard}>
+            <div>
+              <p className={styles.sectionLabel}>NEXT STEP</p>
+              <Heading as="h3">Open the app docs and follow the integration chapters.</Heading>
+              <p>
+                The app docs start with the intro page and then move into architecture, UI components, and database
+                structure.
+              </p>
+            </div>
+            <Link className="button button--primary button--lg" to="/docs/app/intro">
+              Open app docs
+            </Link>
+          </div>
         </section>
       </main>
     </Layout>

@@ -6,70 +6,32 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #214a63;
-  --ifm-color-primary-dark: #1d4259;
-  --ifm-color-primary-darker: #1b3f54;
-  --ifm-color-primary-darkest: #163445;
-  --ifm-color-primary-light: #25526d;
-  --ifm-color-primary-lighter: #285772;
-  --ifm-color-primary-lightest: #2f6685;
+  --ifm-color-primary: #5c38ff;
+  --ifm-color-primary-dark: #4d2fe6;
+  --ifm-color-primary-darker: #4327cb;
+  --ifm-color-primary-darkest: #321da1;
+  --ifm-color-primary-light: #7252ff;
+  --ifm-color-primary-lighter: #866aff;
+  --ifm-color-primary-lightest: #b2a2ff;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
-  --ifm-navbar-background-color: rgba(255, 249, 241, 0.9);
-  --ifm-navbar-link-color: #2a3441;
-  --ifm-heading-color: #171717;
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  --ifm-color-primary: #7cb4d1;
-  --ifm-color-primary-dark: #65a7c8;
-  --ifm-color-primary-darker: #59a0c4;
-  --ifm-color-primary-darkest: #3c89af;
-  --ifm-color-primary-light: #93c1da;
-  --ifm-color-primary-lighter: #9fc8de;
-  --ifm-color-primary-lightest: #c1dceb;
+  --ifm-color-primary: #8b5cf6;
+  --ifm-color-primary-dark: #7c3aed;
+  --ifm-color-primary-darker: #6d28d9;
+  --ifm-color-primary-darkest: #5b21b6;
+  --ifm-color-primary-light: #a78bfa;
+  --ifm-color-primary-lighter: #c4b5fd;
+  --ifm-color-primary-lightest: #ddd6fe;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
 .navbar {
-  backdrop-filter: blur(14px);
-  box-shadow: 0 10px 30px rgba(40, 50, 64, 0.08);
-}
-
-.navbar__brand {
-  gap: 0.8rem;
+  backdrop-filter: blur(10px);
 }
 
 .navbar__logo img {
-  height: 2.2rem;
-  width: 2.2rem;
-  border-radius: 0.9rem;
-  box-shadow: 0 8px 20px rgba(33, 74, 99, 0.16);
-}
-
-.navbar__title {
-  font-size: 1.05rem;
-  font-weight: 800;
-  letter-spacing: 0.01em;
-  color: #18222d;
-}
-
-.navbar__item.navbar__link {
-  position: relative;
-  font-weight: 600;
-  border-radius: 999px;
-  padding: 0.45rem 0.85rem;
-  transition:
-    background-color 180ms ease,
-    color 180ms ease,
-    transform 180ms ease,
-    box-shadow 180ms ease;
-}
-
-.navbar__item.navbar__link:hover {
-  background: linear-gradient(135deg, rgba(255, 214, 158, 0.85), rgba(255, 186, 99, 0.92));
-  color: #17324a;
-  transform: translateY(-1px);
-  box-shadow: 0 10px 22px rgba(255, 180, 87, 0.22);
+  border-radius: 14px;
 }
