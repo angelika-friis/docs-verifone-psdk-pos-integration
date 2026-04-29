@@ -37,6 +37,16 @@ const flowSteps = [
 }
 ];
 
+const techStack = [
+  { name: 'Android', slug: 'android' },
+  { name: 'Kotlin', slug: 'kotlin' },
+  { name: 'Compose', slug: 'jetpackcompose' },
+  { name: 'SQLite/Room', slug: 'sqlite' },
+  { name: 'Dagger', isEmoji: true, char: '⚔️'},
+  { name: 'Ktor', slug: 'ktor' },
+  { name: 'Lottie', slug: 'lottiefiles' }
+];
+
 export default function Home(): ReactNode {
   return (
     <Layout title="POS App" description="Verifone-style POS payment integration docs for on-device and off-device flows.">
@@ -72,6 +82,12 @@ export default function Home(): ReactNode {
             </div>
 
             <div className={styles.heroVisuals}>
+              <img 
+              src="/img/app_icon.png" 
+              alt="POS App Icon" 
+              className={styles.heroAppIcon} 
+            />
+
               <figure className={styles.visualCard}>
                 <img src="/img/hero/off-device.png" alt="Off-device payment flow preview" />
                 <figcaption>Off-device</figcaption>
@@ -100,6 +116,28 @@ export default function Home(): ReactNode {
             ))}
           </div>
         </section>
+
+        <section className={styles.marqueeSection}>
+  <div className={styles.marqueeContainer}>
+    <div className={styles.marqueeContent}>
+      {/* Vi mappar listan två gånger för att skapa en sömlös loop */}
+      {[...techStack, ...techStack].map((tech, index) => (
+        <div key={index} className={styles.techItem}>
+  {tech.isEmoji ? (
+    <span className={styles.techEmojiIcon}>{tech.char}</span>
+  ) : (
+    <img 
+      src={`https://cdn.simpleicons.org/${tech.slug}/${tech.color}`} 
+      alt={tech.name}
+      className={styles.techIconImage}
+    />
+  )}
+  <span className={styles.techName}>{tech.name}</span>
+</div>
+      ))}
+    </div>
+  </div>
+</section>
 
         <section className={styles.section}>
           <div className={styles.sectionHeading}>

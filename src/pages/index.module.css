@@ -44,7 +44,7 @@ color: #f8fafc;
 .heroSection {
   position: relative;
   overflow: hidden;
-  padding: 6rem 1.5rem 4rem;
+  padding: 3rem 1.5rem 4rem;
   background:
     radial-gradient(circle at 20% 20%, rgba(124, 58, 237, 0.12) 0%, transparent 30%),
     radial-gradient(circle at 80% 10%, rgba(37, 99, 235, 0.08) 0%, transparent 30%),
@@ -229,6 +229,48 @@ color: #f8fafc;
   gap: 1.5rem;
 
   margin-top: 2rem;
+}
+
+.heroAppIcon {
+  width: 120px;
+  height: 120px;
+  position: absolute;
+  top: -5px;
+  right: -40px;
+  z-index: 10;
+  border-radius: 28px;
+  box-shadow: 
+    0 20px 40px rgba(124, 58, 237, 0.3),
+    0 0 100px rgba(124, 58, 237, 0.15);
+
+  animation: floatAppIcon 6s ease-in-out infinite;
+}
+
+[data-theme='dark'] .heroAppIcon {
+  box-shadow: 
+    0 20px 40px rgba(139, 92, 246, 0.5),
+    0 0 120px rgba(139, 92, 246, 0.25);
+}
+
+@keyframes floatAppIcon {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(2deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+@media (max-width: 996px) {
+  .heroAppIcon {
+    width: 80px;
+    height: 80px;
+    top: -40px;
+    right: 10px;
+  }
 }
 
 .visualCard {
@@ -456,6 +498,116 @@ color: #f8fafc;
 
 .ctaCard :global(.button--primary:hover) {
   background: var(--ifm-color-primary-dark);
+}
+
+.marqueeSection {
+  margin-top: 2rem;
+  padding: 2rem 0;
+  background: rgba(255, 255, 255, 0.02);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  position: relative;
+
+  z-index: 5; 
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+}
+
+[data-theme='dark'] .marqueeSection {
+  background: rgba(0, 0, 0, 0.2);
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Skapar en mjuk toning på kanterna */
+.marqueeContainer {
+  display: flex;
+  width: 100%;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+}
+
+.marqueeContent {
+  display: flex;
+  gap: 10rem;
+  padding: 1rem 0;
+  animation: scroll 45s linear infinite;
+  white-space: nowrap;
+}
+
+.techItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.techItem img {
+  width: 1.8rem;
+  height: 1.8rem;
+  object-fit: contain;
+}
+
+.techEmojiIcon {
+  font-size: 1.8rem;
+  filter: grayscale(100%);
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+[data-theme='dark'] .techEmojiIcon {
+  filter: grayscale(100%) brightness(1.5);
+}
+
+[data-theme='dark'] .techItem:hover .techEmojiIcon {
+  filter: grayscale(0%) brightness(1);
+}
+
+.techItem:hover .techEmojiIcon {
+  filter: grayscale(0%);
+  transform: scale(1.2) rotate(-10deg);
+  pointer-events: none;
+}
+
+.techItem:hover {
+  opacity: 1;
+}
+
+.techIcon {
+  font-size: 1.4rem;
+}
+
+.techName {
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #1e293b;
+}
+
+[data-theme='dark'] .techName {
+  color: #cbd5e1;
+}
+
+/* Animationen för scrollen */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    /* Vi flyttar exakt hälften av det dubblerade innehållet */
+    transform: translateX(-50%);
+  }
+}
+
+/* Pausa scrollen vid hover för bättre UX */
+.marqueeContainer:hover .marqueeContent {
+  animation-play-state: paused;
 }
 
 @media (max-width: 996px) {
