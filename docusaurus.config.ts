@@ -84,14 +84,19 @@ const config: Config = {
           sidebarId: 'docs',
           docsPluginId: 'pos',
           label: 'App',
-          position: 'left' 
+          position: 'left',
         },
         {
           type: 'docSidebar',
           sidebarId: 'docs',
           docsPluginId: 'integration',
           label: 'Integrations lager',
-          position: 'left' 
+          position: 'left',
+        },
+        {
+          to: '/about',
+          label: 'About',
+          position: 'left',
         },
         {
           href: 'https://github.com/JohannesL2/terminal-ux700',
@@ -108,7 +113,7 @@ const config: Config = {
           items: [
             {
               label: 'Intro',
-              to: '/docs/intro',
+              to: '/docs/app/intro',
             },
           ],
         },
@@ -130,7 +135,7 @@ const config: Config = {
             },
             {
               label: 'Kom igång',
-              to: '/docs/intro',
+              to: '/docs/app/intro',
             },
           ],
         },
