@@ -103,7 +103,7 @@ export default function Home(): ReactNode {
 </p>
 
               <div className={styles.actions}>
-                <Link className="button button--primary button--lg" to="/docs/integration/run-pos/run-pos-app">
+                <Link className="button button--primary button--lg" to="/docs/app/intro">
                   Get started
                 </Link>
                 <Link className="button button--secondary button--lg" to="/about">
