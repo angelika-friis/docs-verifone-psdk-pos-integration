@@ -51,7 +51,6 @@
   object-fit: cover;
   margin: 0 auto 18px;
   display: block;
-  border: 4px solid #fff;
   outline: 2px solid var(--ifm-color-primary);
   box-shadow: var(--ifm-global-shadow-md);
 }
