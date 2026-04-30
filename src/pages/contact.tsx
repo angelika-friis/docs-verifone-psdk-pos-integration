@@ -4,11 +4,12 @@ import styles from './contact.module.css';
 
 const people = [
   {
-    name: 'Johannes',
-    image: '/img/person1.png',
-    email: 'person1@email.com',
-    linkedin: 'https://linkedin.com',
-    github: 'https://github.com',
+    name: <>Johannes <br /> Lindgren</>,
+    image: 'https://johannesl2.netlify.app/assets/image.webp',
+    email: <a href="https://johannesl2.netlify.app/" target="_blank" rel="noreferrer">Portfolio</a>,
+    linkedin: 'https://www.linkedin.com/in/lindgren-johannes/',
+    github: 'https://github.com/johannesL2',
+    isJohannes: true,
   },
   {
     name: 'Angelika Friis',
@@ -62,9 +63,10 @@ export default function Contact() {
                 <a href={person.linkedin} target="_blank" rel="noreferrer">
                   LinkedIn
                 </a>
-                <a href={`mailto:${person.email}`}>
-                  Email
-                </a>
+
+                {!person.isJohannes && (
+                <a href={`mailto:${person.email}`}>Email</a>
+                )}
                 <a href={person.github} target="_blank" rel="noreferrer">
                   GitHub
                 </a>
