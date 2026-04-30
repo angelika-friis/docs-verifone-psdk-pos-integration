@@ -32,6 +32,10 @@
   backdrop-filter: blur(10px);
 }
 
+.navbar img {
+  border-radius: 12px;
+}
+
 .navbar-sidebar--show .navbar-sidebar {
   transform: translateX(0) !important;
   visibility: visible !important;
