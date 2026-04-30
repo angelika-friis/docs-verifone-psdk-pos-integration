@@ -1,17 +1,14 @@
-# Arkitektur
+# Architecture
 
-**Målgrupp:** utvecklare av integrationslagret.
+**Target audience:** developers of the integration layer.
 
-Den här sidan beskriver modulens interna struktur. Publik användning finns i
-[Introduktion](introduction.md) och [TerminalApi](api/terminal-api.md).
+This page outlines the module’s internal architecture. For external usage, see [Introduction](introduction.md).
 
-## Ansvarsgräns
+## Responsibility boundary
 
-Applikationslagret ska se `ApiModule` och `TerminalApi`. Allt under
-`com.example.testv660p.internal` är implementation och får ändras utan att
-app-lagret behöver känna till PSDK.
+The application layer interacts only with `ApiModule` and `TerminalApi`. All code within `com.example.testv660p.internal` is considered internal implementation within the integration layer.
 
-## Objektgraf
+## Object graph
 
 ```mermaid
 flowchart TD
@@ -24,8 +21,8 @@ flowchart TD
     Repo["PaymentSdkRepository"]
     Scanner["ScannerService"]
     VPrinter["VerifonePrintService"]
-    EPrinter["EpsonPrinterService"]
     PSDK["Verifone Payment SDK"]
+    EPrinter["EpsonPrinterService"]
     Epson["Epson ePOS SDK"]
 
     ApiModule --> Factory
@@ -44,22 +41,12 @@ flowchart TD
     EPrinter --> Epson
 ```
 
-## Centrala komponenter
+Details per class are available in [Internal overview](integration-development/internal-overview.md).
 
-- `ApiModule`: processägare och publik startpunkt.
-- `TerminalApiFactory`: bygger objektgrafen för fysisk terminal.
-- `TerminalApiImpl`: implementerar `TerminalApi` genom delegation.
-- `SdkRuntime`: wrapper runt Verifone Payment SDK.
-- `TerminalConnectionManager`: anslutningsstatus och återanslutning.
-- `PaymentService`: betalningsfasad och publik felmappning.
-- `PaymentSdkRepository`: SDK-nära transaktionsadapter.
+## Lifecycle
 
-Detaljer per klass finns i [Intern översikt](internal/overview.md).
+Startup, connection, and teardown are described in:
 
-## Livscykel
-
-Start, anslutning och teardown beskrivs i:
-
-- [Initiering](lifecycle/initialization.md)
-- [Anslutning och återanslutning](lifecycle/connection.md)
-- [Nedstängning](lifecycle/teardown.md)
+* [Initialization](lifecycle/initialization.md)
+* [Connection and reconnection](lifecycle/connection.md)
+* [Teardown](lifecycle/teardown.md)

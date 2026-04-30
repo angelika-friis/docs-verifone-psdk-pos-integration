@@ -1,23 +1,23 @@
-# Nedstängning
+# Teardown
 
-**Målgrupp:** utvecklare av integrationslagret.
+**Target audience:** developers working on the integration layer.
 
-Den publika metoden finns i [TerminalApi](../api/terminal-api.md). Den här sidan
-beskriver implementationens ansvar.
+The public method is described in
+[TerminalApi](../api/terminal-api.md). This page covers the implementation’s responsibilities.
 
 ## TerminalApiImpl.teardownTerminal
 
-Sekvens:
+Sequence:
 
 1. `SdkRuntime.logout()`
 2. `SdkRuntime.teardown()`
 3. `TerminalConnectionManager.setConnected(false)`
-4. returnera `true` om båda SDK-stegen lyckades
+4. return `true` if both SDK steps succeed
 
-Vid exception loggas felet och metoden returnerar `false`.
+If an exception occurs, it is logged and the method returns `false`.
 
-## Begränsning
+## Limitation
 
-`ApiModule` har inget publikt reset-API som gör att hela integrationen kan
-konfigureras om i samma process. Konfigurationsregler för konsumenter finns i
-[Konfiguration](../configuration.md).
+`ApiModule` does not expose a public reset API for reconfiguring the entire integration within the same process.
+Configuration rules for consumers are described in
+[Configuration](build-pos/configure-terminal.md).

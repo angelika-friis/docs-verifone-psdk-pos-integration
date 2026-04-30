@@ -1,41 +1,42 @@
-# Initiering
+# Initialization
 
-**Målgrupp:** utvecklare av integrationslagret.
+**Target audience:** developers working on the integration layer.
 
-Publik startordning finns i [Snabbstart](../quick-start.md). Den här sidan
-beskriver vad implementationen gör.
+The public startup sequence is described in
+[Quick start](../quick-start.md). This page explains what the implementation does.
 
 ## ApiModule.initialize
 
-`initialize(context)` är idempotent. Vid fysisk terminal initieras
-`RuntimeProvider` med `applicationContext`. Vid emulerad terminal hoppar modulen
-över fysisk runtime.
+`initialize(context)` is idempotent.
+
+For a physical terminal, `RuntimeProvider` is initialized with the `applicationContext`.
+For an emulated terminal, the module skips physical runtime initialization.
 
 ## ApiModule.start
 
-`start(scope)` är idempotent och startar integrationen asynkront.
+`start(scope)` is idempotent and starts the integration asynchronously.
 
-Vid emulerad terminal:
+For an emulated terminal:
 
-- `MockTerminalApi` skapas.
-- `startTerminal(...)` körs i angiven scope.
+* `MockTerminalApi` is created
+* `startTerminal(...)` is executed within the provided scope
 
-Vid fysisk terminal:
+For a physical terminal:
 
-- `TerminalApiFactory` bygger objektgrafen.
-- `TerminalApiImpl.startTerminal(config)` körs i angiven scope.
-- `TerminalConnectionManager` får startresultatet som anslutningsstatus.
-- Epson-skrivaren initieras.
+* `TerminalApiFactory` constructs the object graph
+* `TerminalApiImpl.startTerminal(config)` is executed within the provided scope
+* `TerminalConnectionManager` receives the start result as connection state
+* the Epson printer is initialized
 
 ## TerminalApiImpl.startTerminal
 
-Startsekvensen är:
+The startup sequence is:
 
-1. spara `TerminalConnectionConfig` i `TerminalConnectionManager`
+1. store `TerminalConnectionConfig` in `TerminalConnectionManager`
 2. `SdkRuntime.initialize(config)`
 3. `SdkRuntime.awaitInitialized()`
 4. `SdkRuntime.login()`
 5. `SdkRuntime.emitDeviceInformation()`
 
-Konsumenter ska inte anropa den här metoden direkt; se
+Consumers should not call this method directly; see
 [TerminalApi](../api/terminal-api.md).

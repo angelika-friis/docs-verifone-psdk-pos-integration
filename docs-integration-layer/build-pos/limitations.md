@@ -1,31 +1,29 @@
-# Begränsningar
+# Limitations
 
-**Målgrupp:** konsument av integrationslagret.
+**Target audience:** consumers of the integration layer.
 
-Det här är begränsningar som app-lagret behöver känna till.
+These are constraints that the application layer must be aware of.
 
-## Process och konfiguration
+## Process and Configuration
 
-- Integrationslagret ska startas en gång per app-process.
-- Terminalkonfiguration kan inte ändras efter `ApiModule.start(scope)`.
-- `ApiModule.start(scope)` är asynkron; använd `terminalReady`.
+* The integration layer must be started once per app process.
+* Terminal configuration cannot be changed after `ApiModule.start(scope)`.
+* `ApiModule.start(scope)` is asynchronous; use `terminalReady`.
 
-Start och konfiguration beskrivs i [Snabbstart](quick-start.md) och
-[Konfiguration](configuration.md).
+Startup and configuration are described in [Quick Start](quick-start.md) and [Configuration](configuration.md).
 
-## Operationer
+## Operations
 
-- En betalning åt gången stöds.
-- Void kräver `appSpecificData` från originalbetalningen.
-- Refundens kortkontroll jämför bara BIN och sista fyra siffror när den används.
-- Scannerstart kräver en Android `Activity`.
+* Only one payment at a time is supported.
+* Void requires `appSpecificData` from the original payment.
+* Refund card verification compares only the BIN and the last four digits when used.
+* Starting the scanner requires an Android `Activity`.
 
-Detaljer finns på respektive funktionssida.
+See the respective feature pages for details.
 
-## Utskrift
+## Printing
 
-- `PrintContentType.IMAGE` är inte verifierat som riktig bildutskrift i
-  terminalskrivaren.
-- Epson-utskrift använder separat Epson-integration, inte terminalens skrivare.
+* `PrintContentType.IMAGE` is not verified as true image printing on the terminal printer.
+* Epson printing uses a separate Epson integration, not the terminal printer.
 
-Se [Kvittoutskrift](features/receipt-printing.md).
+See [Receipt Printing](features/receipt-printing.md).

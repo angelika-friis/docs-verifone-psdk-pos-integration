@@ -1,8 +1,8 @@
-# Exempel: scanner
+# Example: Scanner
 
-**Målgrupp:** konsument av integrationslagret.
+**Target audience:** consumers of the integration layer.
 
-För scannerregler, se [Scanner](../features/scanner.md).
+For scanner rules, see [Scanner](../features/scanner.md).
 
 ```kotlin
 class ScannerViewModel : ViewModel() {

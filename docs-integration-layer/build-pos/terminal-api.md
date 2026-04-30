@@ -1,9 +1,8 @@
 # TerminalApi
 
-**Målgrupp:** konsument av integrationslagret.
+**Target audience:** consumers of the integration layer.
 
-`TerminalApi` är det kontrakt applikationslagret använder via
-`ApiModule.terminal`.
+`TerminalApi` is the contract used by the application layer via `ApiModule.terminal`.
 
 ## Status
 
@@ -15,19 +14,19 @@ val terminalConnected: StateFlow<Boolean>
 val deviceInfo: StateFlow<DeviceInfo?>
 ```
 
-Semantiken för dessa flöden finns i [Status och flöden](state-and-flows.md).
+The semantics of these flows are described in [State and Flows](state-and-flows.md).
 
-## Livscykel
+## Lifecycle
 
 ```kotlin
 suspend fun startTerminal(config: TerminalConnectionConfig): TerminalInitResult
 suspend fun teardownTerminal(): Boolean
 ```
 
-`startTerminal(...)` ägs av `ApiModule` i normal appkod. Startordning finns i
-[Snabbstart](../quick-start.md).
+`startTerminal(...)` is owned by `ApiModule` in typical application code.
+Startup order is described in [Quick Start](../quick-start.md).
 
-## Betalning
+## Payments
 
 ```kotlin
 suspend fun pay(amountMinorUnits: Int): PaymentResult
@@ -41,13 +40,13 @@ suspend fun paySplitPart(part: SplitPaymentPart, totalsGroupId: String): Payment
 fun abortPayment()
 ```
 
-Funktionsspecifik användning finns i:
+Function-specific usage is described in:
 
-- [Betalningar](../features/payments.md)
-- [Refund](../features/refund.md)
-- [Void](../features/void.md)
+* [Payments](../features/payments.md)
+* [Refund](../features/refund.md)
+* [Void](../features/void.md)
 
-Resultat och fel beskrivs i [Felhantering](../error-handling.md).
+Results and errors are described in [Error Handling](../error-handling.md).
 
 ## Scanner
 
@@ -56,9 +55,9 @@ fun initializeScanner()
 fun startScanner(activity: Activity, behavior: ScanBehavior)
 ```
 
-Användning finns i [Scanner](../features/scanner.md).
+Usage is described in [Scanner](../features/scanner.md).
 
-## Utskrift
+## Printing
 
 ```kotlin
 suspend fun print(content: String, contentType: PrintContentType): PrintResult
@@ -66,4 +65,4 @@ suspend fun initializeEpsonPrinter(): PrintResult
 suspend fun printEpson(data: EpsonPrintData): PrintResult
 ```
 
-Användning finns i [Kvittoutskrift](../features/receipt-printing.md).
+Usage is described in [Receipt Printing](../features/receipt-printing.md).

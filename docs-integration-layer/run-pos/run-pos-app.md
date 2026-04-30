@@ -1,3 +1,7 @@
+---
+title: Setup
+---
+
 # Setup to run POS app
 
 **Target audience:** developers who want to run the existing POS application.

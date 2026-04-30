@@ -3,7 +3,7 @@ export default {
     'introduction',
     {
       type: 'category',
-      label: 'Setup to run POS application',
+      label: 'Run POS application',
       items: [
         'run-pos/run-pos-app',
       ],
@@ -45,6 +45,7 @@ export default {
       label: 'Develop integration layer',
       items: [
         'integration-development/architecture',
+        'integration-development/internal-overview',
         {
           type: 'category',
           label: 'Lifecycle',
@@ -52,13 +53,6 @@ export default {
             'integration-development/lifecycle/initialization',
             'integration-development/lifecycle/connection',
             'integration-development/lifecycle/teardown',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Internal functions',
-          items: [
-            'integration-development/internal/overview',
           ],
         },
       ],

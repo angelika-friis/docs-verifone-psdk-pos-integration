@@ -1,9 +1,8 @@
-# Exempel: enkel betalning
+# Example: Simple Payment
 
-**Målgrupp:** konsument av integrationslagret.
+**Target audience:** consumers of the integration layer.
 
-För betalningsregler, se [Betalningar](../features/payments.md). För resultat,
-se [Felhantering](../error-handling.md).
+For payment rules, see [Payments](../features/payments.md). For result handling, see [Error Handling](../error-handling.md).
 
 ```kotlin
 class PaymentViewModel : ViewModel() {
@@ -16,7 +15,7 @@ class PaymentViewModel : ViewModel() {
             when (val result = terminal.pay(amountMinorUnits)) {
                 is PaymentResult.Success -> {
                     saveAppSpecificData(result.appSpecificData)
-                    showMessage("Betalning godkänd")
+                    showMessage("Payment approved")
                 }
 
                 is PaymentResult.Failure -> {
@@ -24,7 +23,7 @@ class PaymentViewModel : ViewModel() {
                 }
 
                 PaymentResult.Aborted -> {
-                    showMessage("Betalningen avbröts")
+                    showMessage("Payment was aborted")
                 }
             }
         }
@@ -43,6 +42,6 @@ Button(
     enabled = ready,
     onClick = { viewModel.pay(1000) }
 ) {
-    Text("Betala")
+    Text("Pay")
 }
 ```
