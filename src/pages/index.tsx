@@ -99,11 +99,11 @@ export default function Home(): ReactNode {
               </Heading>
 
             <p className={styles.lead}>
-  This POS app combines Android integration, terminal handling, and documentation to enable smooth end-to-end checkout flows.
+  We present a Point of Sale (POS) application developed in Kotlin for the Android operating system. The system is available in two versions: an on-device version, which is installed directly on an Android-based payment terminal with a touchscreen, and an off-device version, which runs on a larger external display, such as an iPad, and connects to a payment terminal.
 </p>
 
               <div className={styles.actions}>
-                <Link className="button button--primary button--lg" to="/docs/app/intro">
+                <Link className="button button--primary button--lg" to="/docs/integration/run-pos/run-pos-app">
                   Get started
                 </Link>
                 <Link className="button button--secondary button--lg" to="/about">

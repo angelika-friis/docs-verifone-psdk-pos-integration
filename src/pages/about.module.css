@@ -2,6 +2,13 @@
   min-height: 100%;
   padding: 0 1.5rem 4.5rem;
   background:
+    radial-gradient(circle at 20% 10%, rgba(92, 56, 255, 0.12), transparent 24%),
+    radial-gradient(circle at 90% 0%, rgba(37, 99, 235, 0.08), transparent 20%),
+    linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+[data-theme="dark"] .page {
+  background:
     radial-gradient(circle at 20% 10%, rgba(92, 56, 255, 0.22), transparent 24%),
     radial-gradient(circle at 90% 0%, rgba(37, 99, 235, 0.14), transparent 20%),
     linear-gradient(180deg, #0b1020 0%, #0e1226 100%);
@@ -15,30 +22,42 @@
 
 .eyebrow {
   margin: 0 0 0.75rem;
-  color: rgba(255, 255, 255, 0.62);
+  color: rgba(63, 63, 63, 0.62);
   font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
 
+[data-theme="dark"] .eyebrow {
+  color: rgba(188, 188, 188, 0.48);
+}
+
 .hero h1 {
   margin: 0;
 
-  max-width: 28ch;   /* 🔥 ändra från 14ch */
-  color: #fff;
+  max-width: 28ch;
+  color: #0f172a;
 
   font-size: clamp(2rem, 4vw, 3rem);
   line-height: 1.1;
   letter-spacing: -0.03em;
 }
 
+[data-theme="dark"] .hero h1 {
+  color: #ffffff;
+}
+
 .hero p {
   max-width: 54rem;
   margin: 1.25rem 0 0;
-  color: rgba(255, 255, 255, 0.78);
+  color: #414141;
   font-size: 1.08rem;
   line-height: 1.75;
+}
+
+[data-theme="dark"] .hero p {
+  color: rgb(220, 220, 220);
 }
 
 .actions {
@@ -51,6 +70,7 @@
 .actions :global(.button--primary) {
   background: var(--ifm-color-primary);
   border: none;
+  color: #ffffff;
 }
 
 .actions :global(.button--primary:hover) {
@@ -59,12 +79,18 @@
 
 .actions :global(.button--secondary) {
   background: transparent;
-  color: #fff;
+  color: #0e1226;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+[data-theme="dark"] .actions :global(.button--secondary) {
+  color: #ffffff;
   border: 1px solid rgba(255, 255, 255, 0.25);
 }
 
 .actions :global(.button--secondary:hover) {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(30, 41, 59, 0.08);
+  border-color: rgba(30, 41, 59, 0.38);
 }
 
 .grid {

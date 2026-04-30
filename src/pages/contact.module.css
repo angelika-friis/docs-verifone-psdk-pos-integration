@@ -1,23 +1,22 @@
 .container {
-  padding: 6rem 1.5rem;
+  padding: 2.5rem 1rem;
   max-width: 1200px;
   margin: 0 auto;
 }
 
 .header {
   text-align: center;
-  margin-bottom: 5rem;
 }
 
 .title {
   font-size: 2.8em;
   font-weight: 800;
-  margin-top: 1rem;
+  margin-bottom: 2rem;
   color: var(--ifm-color-emphasis-900);
 }
 
 .subtitle {
-  max-width: 650px;
+  max-width: 750px;
   margin: 0 auto 1.5rem;
   color: var(--ifm-color-emphasis-700);
   font-size: 1.15rem;
@@ -52,7 +51,6 @@
   object-fit: cover;
   margin: 0 auto 18px;
   display: block;
-  border: 4px solid #fff;
   outline: 2px solid var(--ifm-color-primary);
   box-shadow: var(--ifm-global-shadow-md);
 }

@@ -43,11 +43,10 @@ export default function Contact() {
       <div className={styles.container}>
 
         <div className={styles.header}>
-          <p className={styles.subtitle}>
-            This project was developed as part of a LIA (Learning in Work) experience, where we designed and built a modular POS system with payments and hardware integration. The integration layer is built to be reusable and adaptable, meaning it can be connected to any POS application.
-          </p>
-
           <h2 className={styles.title}>Meet the Team</h2>
+          <p className={styles.subtitle}>
+            Developed during our LIA, this modular POS system features seamless hardware and payment integration. Its reusable core is built to adapt to any POS application.
+          </p>
         </div>
 
         <div className={styles.grid}>

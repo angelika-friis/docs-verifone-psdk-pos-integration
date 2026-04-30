@@ -34,19 +34,6 @@ This page outlines the technical foundation of the POS application. The project 
   }
 `}</style>
 
-<div className="arch-grid">
-  <img 
-    src="/img/hero/on-device.png"
-    alt="On-device checkout interface"
-    className="arch-img"
-  />
-  <img 
-    src="/img/hero/off-device.png"
-    alt="Off-device terminal interface"
-    className="arch-img"
-  />
-</div>
-
 ## Feature-Based MVVM
 We utilize a **Feature-based MVVM** (Model-View-ViewModel) structure. By grouping code by functionality rather than technical layers, we ensure that the codebase remains scalable and easy to navigate.
 
