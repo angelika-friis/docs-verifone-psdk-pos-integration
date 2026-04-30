@@ -32,6 +32,32 @@
   backdrop-filter: blur(10px);
 }
 
-.navbar__logo img {
-  border-radius: 14px;
+.navbar-sidebar--show .navbar-sidebar {
+  transform: translateX(0) !important;
+  visibility: visible !important;
+  z-index: 2000 !important;
+  background-color: var(--ifm-navbar-background-color, #ffffff) !important;
+  width: 300px;
+  height: 100vh;
+}
+
+.navbar-sidebar--show .navbar-sidebar__backdrop {
+  display: block !important;
+  z-index: 1900 !important;
+  opacity: 1 !important;
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.homePage, .heroSection, .heroAppIcon {
+  z-index: 1 !important;
+}
+
+.navbar-sidebar__close {
+  z-index: 2001 !important;
+  visibility: visible !important;
 }
