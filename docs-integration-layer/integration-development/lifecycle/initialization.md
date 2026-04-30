@@ -3,7 +3,7 @@
 **Target audience:** developers working on the integration layer.
 
 The public startup sequence is described in
-[Quick start](../quick-start.md). This page explains what the implementation does.
+[Quick start](../../build-pos/build-pos-app.md). This page explains what the implementation does.
 
 ## ApiModule.initialize
 
@@ -39,4 +39,4 @@ The startup sequence is:
 5. `SdkRuntime.emitDeviceInformation()`
 
 Consumers should not call this method directly; see
-[TerminalApi](../api/terminal-api.md).
+[TerminalApi](../../build-pos/terminal-api.md).

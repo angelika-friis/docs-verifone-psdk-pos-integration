@@ -1,7 +1,7 @@
 # Quick start for integrating your own POS app
 
 This page shows the minimum recommended startup flow when building your own POS application. Details about available
-terminal configurations can be found in [Configuration](build-pos/configure-terminal.md).
+terminal configurations can be found in [Configuration](configure-terminal.md).
 
 ## Prerequisites
 
@@ -10,7 +10,7 @@ Before starting, make sure the required SDKs are installed:
 - Verifone Payment SDK (PSDK)
 - Epson ePOS SDK (for off-device printing)
 
-See [Setup](run-pos/run-pos-app.md) for installation instructions for these dependencies.
+See [Setup](../run-pos/run-pos-app.md) for installation instructions for these dependencies.
 
 ## 1. Add the integration module as dependency
 
@@ -52,7 +52,7 @@ class App : Application() {
 ```
 
 `ApiModule.start(scope)` is asynchronous. Read readiness via
-[State and flows](api/state-and-flows.md).
+[State and flows](state-and-flows.md).
 
 ## 3. Use the terminal
 
@@ -68,4 +68,4 @@ class PaymentViewModel : ViewModel() {
 }
 ```
 
-Public methods and models are described in [TerminalApi](api/terminal-api.md).
+Public methods and models are described in [TerminalApi](terminal-api.md).

@@ -3,7 +3,7 @@
 **Target audience:** developers working on the integration layer.
 
 Public status semantics are described in
-[State and flows](../api/state-and-flows.md).
+[State and flows](../../build-pos/state-and-flows.md).
 This page covers the internal reconnection logic.
 
 ## terminalReady

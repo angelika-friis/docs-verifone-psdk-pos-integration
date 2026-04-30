@@ -3,7 +3,7 @@
 **Target audience:** consumers of the integration layer.
 
 The integration layer provides two printing paths. API signatures are defined in
-[TerminalApi](../api/terminal-api.md), and the result model in
+[TerminalApi](../terminal-api.md), and the result model in
 [Error Handling](../error-handling.md).
 
 ## Verifone terminal printer

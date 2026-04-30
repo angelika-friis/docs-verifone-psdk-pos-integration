@@ -3,7 +3,7 @@
 **Target audience:** consumers of the integration layer.
 
 The scanner is accessed via `TerminalApi`. API signatures are defined in
-[TerminalApi](../api/terminal-api.md).
+[TerminalApi](../terminal-api.md).
 
 ## Initialize and start
 
@@ -21,7 +21,7 @@ ApiModule.terminal.startScanner(
 ## Reading results
 
 Scanner results are delivered via `scannedCode`, see
-[State and Flows](../api/state-and-flows.md).
+[State and Flows](../state-and-flows.md).
 
 ## Example
 
