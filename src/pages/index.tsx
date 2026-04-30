@@ -1,4 +1,5 @@
 import type {ReactNode} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
@@ -30,14 +31,61 @@ const flowSteps = [
     title: 'Choose your payment mode',
     text: 'Use on-device checkout for in-app payments or off-device terminal handling for external processing.',
   },
-  {
-    step: '03',
-    title: 'Test and ship confidently',
-    text: 'Validate the user journey with the hero previews, feature pages, and integration guides.',
-  },
+{
+  step: '03',
+  title: 'Integrate and scale the app',
+  text: 'The integration layer is built to be POS-agnostic, allowing any POS application—such as Gardeco—to integrate it directly into its checkout system. It is designed to work seamlessly with the general app architecture, making it easy to extend and deploy across different environments.',
+}
+];
+
+const techStack = [
+  { name: 'Android', slug: 'android' },
+  { name: 'Kotlin', slug: 'kotlin' },
+  { name: 'Compose', slug: 'jetpackcompose' },
+  { name: 'SQLite/Room', slug: 'sqlite' },
+  { name: 'Dagger', isEmoji: true, char: '⚔️'},
+  { name: 'Ktor', slug: 'ktor' },
+  { name: 'Lottie', slug: 'lottiefiles' }
 ];
 
 export default function Home(): ReactNode {
+
+  const [zoomedImage, setZoomedImage] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!zoomedImage) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setZoomedImage(null);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [zoomedImage]);
+
+  const homePageRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const homePage = homePageRef.current;
+    if (!homePage) return;
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = homePage.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const xPercent = (x / rect.width) * 100;
+      const yPercent = (y / rect.height) * 100;
+      homePage.style.setProperty('--mouse-x', `${xPercent}%`);
+      homePage.style.setProperty('--mouse-y', `${yPercent}%`);
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
+
   return (
     <Layout title="POS App" description="Verifone-style POS payment integration docs for on-device and off-device flows.">
       <main className={styles.homePage}>
@@ -47,13 +95,12 @@ export default function Home(): ReactNode {
               <p className={styles.eyebrow}>PAYMENT INTEGRATION PLATFORM</p>
 
               <Heading as="h1" className={styles.title}>
-                Build a smooth payment experience for on-device and off-device flows.
+                A smooth payment experience for on-device and off-device flows.
               </Heading>
 
-              <p className={styles.lead}>
-                This POS app brings together the Android integration, terminal handling, and documentation you need to
-                move from setup to real checkout flows with less friction.
-              </p>
+            <p className={styles.lead}>
+  This POS app combines Android integration, terminal handling, and documentation to enable smooth end-to-end checkout flows.
+</p>
 
               <div className={styles.actions}>
                 <Link className="button button--primary button--lg" to="/docs/app/intro">
@@ -73,12 +120,18 @@ export default function Home(): ReactNode {
             </div>
 
             <div className={styles.heroVisuals}>
-              <figure className={styles.visualCard}>
+              <img 
+              src="/img/app_icon.png" 
+              alt="POS App Icon" 
+              className={styles.heroAppIcon} 
+            />
+
+              <figure className={styles.visualCard} onClick={() => setZoomedImage('/img/hero/off-device.png')}>
                 <img src="/img/hero/off-device.png" alt="Off-device payment flow preview" />
                 <figcaption>Off-device</figcaption>
               </figure>
 
-              <figure className={styles.visualCard}>
+              <figure className={styles.visualCard} onClick={() => setZoomedImage('/img/hero/on-device.png')}>
                 <img src="/img/hero/on-device.png" alt="On-device payment flow preview" />
                 <figcaption>On-device</figcaption>
               </figure>
@@ -101,6 +154,28 @@ export default function Home(): ReactNode {
             ))}
           </div>
         </section>
+
+        <section className={styles.marqueeSection}>
+  <div className={styles.marqueeContainer}>
+    <div className={styles.marqueeContent}>
+      {/* Vi mappar listan två gånger för att skapa en sömlös loop */}
+      {[...techStack, ...techStack].map((tech, index) => (
+        <div key={index} className={styles.techItem}>
+  {tech.isEmoji ? (
+    <span className={styles.techEmojiIcon}>{tech.char}</span>
+  ) : (
+    <img 
+      src={`https://cdn.simpleicons.org/${tech.slug}/${tech.color}`} 
+      alt={tech.name}
+      className={styles.techIconImage}
+    />
+  )}
+  <span className={styles.techName}>{tech.name}</span>
+</div>
+      ))}
+    </div>
+  </div>
+</section>
 
         <section className={styles.section}>
           <div className={styles.sectionHeading}>
@@ -134,6 +209,15 @@ export default function Home(): ReactNode {
             </Link>
           </div>
         </section>
+
+        {zoomedImage && (
+          <div className={styles.zoomOverlay} onClick={() => setZoomedImage(null)}>
+            <div className={styles.zoomModal}>
+              <img src={zoomedImage} alt="Zoomed view" />
+              <span className={styles.closeHint}>Click anywhere to close</span>
+            </div>
+          </div>
+        )}
       </main>
     </Layout>
   );

@@ -76,7 +76,7 @@ const config: Config = {
       title: 'POS App',
       logo: {
         alt: 'POS App Logo',
-        src: 'img/logo.svg',
+        src: 'img/app_icon.png',
       },
       items: [
         {
@@ -93,11 +93,16 @@ const config: Config = {
           label: 'Integrations lager',
           position: 'left',
         },
-        {
-          to: '/about',
-          label: 'About',
-          position: 'left',
-        },
+      {
+  to: '/about',
+  label: 'About us',
+  position: 'left',
+},
+{
+  to: '/contact',
+  label: 'Contact us',
+  position: 'left',
+},
         {
           href: 'https://github.com/JohannesL2/terminal-ux700',
           label: 'GitHub',
@@ -129,10 +134,10 @@ const config: Config = {
         {
           title: 'Explore',
           items: [
-            {
-              label: 'Blog',
-              to: '/blog',
-            },
+           {
+  label: 'Contact us',
+  to: '/Contact',
+},
             {
               label: 'Kom igång',
               to: '/docs/app/intro',
