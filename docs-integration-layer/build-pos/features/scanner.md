@@ -1,13 +1,13 @@
 # Scanner
 
-**Målgrupp:** konsument av integrationslagret.
+**Target audience:** consumers of the integration layer.
 
-Scanner används via `TerminalApi`. API-signaturer finns i
+The scanner is accessed via `TerminalApi`. API signatures are defined in
 [TerminalApi](../api/terminal-api.md).
 
-## Initiera och starta
+## Initialize and start
 
-```kotlin
+```kotlin id="p6g9i1"
 ApiModule.terminal.initializeScanner()
 
 ApiModule.terminal.startScanner(
@@ -16,13 +16,13 @@ ApiModule.terminal.startScanner(
 )
 ```
 
-`ScanBehavior` kan vara `SINGLE` eller `CONTINUOUS`.
+`ScanBehavior` can be `SINGLE` or `CONTINUOUS`.
 
-## Läsa resultat
+## Reading results
 
-Scannerresultat kommer via `scannedCode`, se
-[Status och flöden](../api/state-and-flows.md).
+Scanner results are delivered via `scannedCode`, see
+[State and Flows](../api/state-and-flows.md).
 
-## Exempel
+## Example
 
-Se [Exempel: scanner](../examples/scanner.md).
+See [Example: Scanner](../examples/scanner.md).

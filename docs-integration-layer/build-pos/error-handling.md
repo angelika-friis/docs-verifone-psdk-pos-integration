@@ -1,55 +1,53 @@
-# Felhantering
+# Error Handling
 
-**Målgrupp:** konsument av integrationslagret.
+**Target audience:** consumers of the integration layer.
 
-Alla publika terminaloperationer returnerar modeller från `api.model`. App-lagret
-ska hantera dessa modeller och inte PSDK-specifika statuskoder.
+All public terminal operations return models from `api.model`. The application layer should handle these models rather than PSDK-specific status codes.
 
 ## TerminalInitResult
 
-- `Success`
-- `Failure(errorMessage)`
+* `Success`
+* `Failure(errorMessage)`
 
-Normal start sker via `ApiModule.start(scope)`, se [Snabbstart](quick-start.md).
+Normal startup is performed via `ApiModule.start(scope)`, see [Quick Start](quick-start.md).
 
 ## PaymentResult
 
-- `Success(paymentInfo, appSpecificData, maskedPan, brand)`
-- `Failure(paymentInfo, error)`
-- `Aborted`
+* `Success(paymentInfo, appSpecificData, maskedPan, brand)`
+* `Failure(paymentInfo, error)`
+* `Aborted`
 
-Spara `appSpecificData` från `Success` om void ska stödjas. Void-flödet beskrivs
-i [Void](features/void.md).
+Persist `appSpecificData` from `Success` if void operations need to be supported. The void flow is described in [Void](features/void.md).
 
 ## PaymentError
 
-- `DeviceNotConnected`
-- `DeviceBusy`
-- `Timeout`
-- `Aborted`
-- `StartFailed`
-- `SessionNotActive`
-- `CardReadFailed`
-- `WrongCard`
-- `PaymentAlreadyInProgress`
-- `Declined(message)`
-- `SdkError(message)`
-- `Unknown(message)`
+* `DeviceNotConnected`
+* `DeviceBusy`
+* `Timeout`
+* `Aborted`
+* `StartFailed`
+* `SessionNotActive`
+* `CardReadFailed`
+* `WrongCard`
+* `PaymentAlreadyInProgress`
+* `Declined(message)`
+* `SdkError(message)`
+* `Unknown(message)`
 
-Funktionsspecifika orsaker beskrivs på respektive funktionssida:
+Function-specific error cases are described on their respective pages:
 
-- [Betalningar](features/payments.md)
-- [Refund](features/refund.md)
-- [Void](features/void.md)
+* [Payments](features/payments.md)
+* [Refund](features/refund.md)
+* [Void](features/void.md)
 
 ## PrintResult
 
-- `Success`
-- `Failure`
+* `Success`
+* `Failure`
 
-`Failure` har:
+`Failure` contains:
 
-- `errorMessage`: text som kan visas för användaren.
-- `reason`: teknisk text för loggning.
+* `errorMessage`: user-facing message.
+* `reason`: technical message for logging.
 
-Utskriftsflöden beskrivs i [Kvittoutskrift](features/receipt-printing.md).
+Printing flows are described in [Receipt Printing](features/receipt-printing.md). 

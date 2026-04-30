@@ -1,20 +1,20 @@
-# Exempel: utskrift
+# Example: Printing
 
-**Målgrupp:** konsument av integrationslagret.
+**Target audience:** consumers of the integration layer.
 
-För utskriftsregler, se [Kvittoutskrift](../features/receipt-printing.md).
+For printing rules, see [Receipt Printing](../features/receipt-printing.md).
 
 ## Verifone
 
 ```kotlin
 viewModelScope.launch {
     val result = ApiModule.terminal.print(
-        content = "<p>Tack för ditt köp</p>",
+        content = "<p>Thank you for your purchase</p>",
         contentType = PrintContentType.HTML,
     )
 
     when (result) {
-        PrintResult.Success -> showMessage("Kvitto utskrivet")
+        PrintResult.Success -> showMessage("Receipt printed")
         is PrintResult.Failure -> showMessage(result.errorMessage)
     }
 }
@@ -28,7 +28,7 @@ viewModelScope.launch {
         blocks = listOf(
             EpsonPrintBlock.Text("Gardeco", EpsonAlign.CENTER),
             EpsonPrintBlock.Feed(1),
-            EpsonPrintBlock.Text("Tack för ditt köp"),
+            EpsonPrintBlock.Text("Thank you for your purchase"),
             EpsonPrintBlock.Cut(),
         )
     )
@@ -36,7 +36,7 @@ viewModelScope.launch {
     val result = ApiModule.terminal.printEpson(data)
 
     when (result) {
-        PrintResult.Success -> showMessage("Kvitto utskrivet")
+        PrintResult.Success -> showMessage("Receipt printed")
         is PrintResult.Failure -> showMessage(result.errorMessage)
     }
 }

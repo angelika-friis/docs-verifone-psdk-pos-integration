@@ -1,23 +1,24 @@
-# Betalningar
+# Payments
 
-**Målgrupp:** konsument av integrationslagret.
+**Target audience:** consumers of the integration layer.
 
-Använd den här sidan för betalningsspecifikt beteende. Metodsignaturer finns i
-[TerminalApi](../api/terminal-api.md) och resultatmodeller i
-[Felhantering](../error-handling.md).
+Use this page for payment-specific behavior. Method signatures are defined in
+[TerminalApi](../api/terminal-api.md), and result models in
+[Error Handling](../error-handling.md).
 
-## Vanlig betalning
+## Standard payment
 
 ```kotlin
 val result = ApiModule.terminal.pay(amountMinorUnits = 1000)
 ```
 
-Belopp anges i minor units.
+Amounts are specified in minor units.
+For SEK, 1 krona = 100 öre.
+Example: 10.50 SEK → 1050.
 
-## Samtidighet
+## Concurrency
 
-Integrationslagret stödjer en betalning åt gången. Om en betalning redan pågår
-returneras `PaymentError.PaymentAlreadyInProgress`.
+The integration layer supports one payment at a time. If a payment is already in progress, `PaymentError.PaymentAlreadyInProgress` is returned.
 
 ## Abort
 
@@ -25,17 +26,16 @@ returneras `PaymentError.PaymentAlreadyInProgress`.
 ApiModule.terminal.abortPayment()
 ```
 
-Abort skickar en avbrytbegäran till terminalen. UI ska vänta på resultatet från
-det pågående betalningsanropet.
+Abort sends a cancellation request to the terminal. The UI should wait for the result of the ongoing payment call.
 
-## Split payment-del
+## Split payment (partial payment)
 
 ```kotlin
 val result = ApiModule.terminal.paySplitPart(part, totalsGroupId)
 ```
 
-`part.paymentType` avgör om delen hanteras som kort eller presentkort.
+`part.paymentType` determines whether the part is processed as a card or gift card payment.
 
-## Exempel
+## Example
 
-Se [Exempel: enkel betalning](../examples/basic-payment.md).
+See [Example: Basic payment](../examples/basic-payment.md).

@@ -1,32 +1,32 @@
-# Kvittoutskrift
+# Receipt Printing
 
-**Målgrupp:** konsument av integrationslagret.
+**Target audience:** consumers of the integration layer.
 
-Integrationslagret har två utskriftsvägar. API-signaturer finns i
-[TerminalApi](../api/terminal-api.md) och resultatmodellen i
-[Felhantering](../error-handling.md).
+The integration layer provides two printing paths. API signatures are defined in
+[TerminalApi](../api/terminal-api.md), and the result model in
+[Error Handling](../error-handling.md).
 
-## Verifone-terminalens skrivare
+## Verifone terminal printer
 
 ```kotlin
 val result = ApiModule.terminal.print(
-    content = "Kvitto",
+    content = "Receipt",
     contentType = PrintContentType.TEXT,
 )
 ```
 
-`PrintContentType` kan vara `HTML`, `TEXT` eller `IMAGE`. Se kända begränsningar
-i [Begränsningar](../limitations.md).
+`PrintContentType` can be `HTML`, `TEXT`, or `IMAGE`. See known limitations in
+[Limitations](../limitations.md).
 
-## Epson-skrivare
+## Epson printer
 
 ```kotlin
 val initResult = ApiModule.terminal.initializeEpsonPrinter()
 val result = ApiModule.terminal.printEpson(data)
 ```
 
-`EpsonPrintData` består av block som text, logotyp, feed, cut och barcode.
+`EpsonPrintData` consists of blocks such as text, logo, feed, cut, and barcode.
 
-## Exempel
+## Example
 
-Se [Exempel: utskrift](../examples/printing.md).
+See [Example: Printing](../examples/printing.md).

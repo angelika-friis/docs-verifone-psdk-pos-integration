@@ -1,27 +1,27 @@
 # Void
 
-**Målgrupp:** konsument av integrationslagret.
+**Target audience:** consumers of the integration layer.
 
-Void makulerar en tidigare betalning med `appSpecificData` från originalköpet.
-API-signaturer finns i [TerminalApi](../api/terminal-api.md).
+Void cancels a previous payment using the `appSpecificData` from the original transaction. API signatures are defined in
+[TerminalApi](../api/terminal-api.md).
 
-## Användning
+## Usage
 
-```kotlin
+```kotlin id="7gk0nq"
 val result = ApiModule.terminal.voidPayment(appSpecificData)
 ```
 
-Spara värdet från lyckad betalning:
+Persist the value from a successful payment:
 
-```kotlin
+```kotlin id="m1x4ze"
 if (result is PaymentResult.Success) {
     save(result.appSpecificData)
 }
 ```
 
-## App-lagrets ansvar
+## Responsibilities of the application layer
 
-Integrationslagret kan inte voida en betalning utan `appSpecificData`. App-lagret
-måste därför spara värdet tillsammans med originaltransaktionen.
+The integration layer cannot void a payment without `appSpecificData`. The application layer must therefore persist this value together with the original transaction.
 
-Resultat och fel beskrivs i [Felhantering](../error-handling.md).
+Results and errors are described in
+[Error Handling](../error-handling.md).

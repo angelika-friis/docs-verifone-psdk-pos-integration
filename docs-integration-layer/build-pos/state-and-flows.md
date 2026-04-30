@@ -1,9 +1,9 @@
-# Status och flöden
+# Status and Flows
 
-**Målgrupp:** konsument av integrationslagret.
+**Target audience:** consumers of the integration layer.
 
-Den här sidan beskriver hur app-lagret ska läsa status från `TerminalApi`.
-Metodlistan finns i [TerminalApi](terminal-api.md).
+This page describes how the application layer should read state from `TerminalApi`.
+The method reference is available in [TerminalApi](terminal-api.md).
 
 ## terminalReady
 
@@ -11,9 +11,8 @@ Metodlistan finns i [TerminalApi](terminal-api.md).
 val terminalReady: StateFlow<Boolean>
 ```
 
-Använd detta som primärt villkor för att aktivera terminalflöden i UI.
-`true` betyder att integrationslagret bedömer att terminalen kan ta emot nya
-operationer.
+Use this as the primary condition for enabling terminal flows in the UI.
+`true` indicates that the integration layer considers the terminal ready to accept new operations.
 
 ## terminalConnected
 
@@ -21,8 +20,7 @@ operationer.
 val terminalConnected: StateFlow<Boolean>
 ```
 
-Visar anslutningsstatus. `terminalReady` är striktare än `terminalConnected` och
-ska användas för åtgärdsknappar.
+Represents connection status. `terminalReady` is stricter than `terminalConnected` and should be used for action controls.
 
 ## deviceInfo
 
@@ -30,8 +28,8 @@ ska användas för åtgärdsknappar.
 val deviceInfo: StateFlow<DeviceInfo?>
 ```
 
-Innehåller terminal-, Payment App-, PSDK- och merchant-information när den finns.
-Värdet är `null` innan integrationslagret har publicerat information.
+Contains terminal, Payment App, PSDK, and merchant information when available.
+The value is `null` until the integration layer has published data.
 
 ## logs
 
@@ -39,7 +37,7 @@ Värdet är `null` innan integrationslagret har publicerat information.
 val logs: SharedFlow<String>
 ```
 
-Loggrader från integrationslagret för debugvy, support och felsökning.
+Log entries from the integration layer for debug views, support, and troubleshooting.
 
 ## scannedCode
 
@@ -47,9 +45,9 @@ Loggrader från integrationslagret för debugvy, support och felsökning.
 val scannedCode: Flow<String>
 ```
 
-Scannerresultat. Start av scanner beskrivs i [Scanner](../features/scanner.md).
+Scanner results. Scanner initialization and usage are described in [Scanner](../features/scanner.md).
 
-## Exempel
+## Example
 
 ```kotlin
 val ready by terminalApi.terminalReady.collectAsState()
@@ -57,4 +55,4 @@ val connected by terminalApi.terminalConnected.collectAsState()
 val deviceInfo by terminalApi.deviceInfo.collectAsState()
 ```
 
-UI ska inte fråga PSDK direkt om motsvarande status.
+The UI should not query the PSDK directly for equivalent state.

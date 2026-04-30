@@ -1,44 +1,43 @@
-# Anslutning och återanslutning
+# Connection and reconnection
 
-**Målgrupp:** utvecklare av integrationslagret.
+**Target audience:** developers working on the integration layer.
 
-Publik statussemantik finns i [Status och flöden](../api/state-and-flows.md).
-Den här sidan beskriver intern reconnect-logik.
+Public status semantics are described in
+[State and flows](../api/state-and-flows.md).
+This page covers the internal reconnection logic.
 
 ## terminalReady
 
-`TerminalConnectionManager` beräknar `terminalReady` genom att kombinera:
+`TerminalConnectionManager` derives `terminalReady` by combining:
 
-- lyckad SDK-initiering
-- `TransactionManagerState.LOGGED_IN`
-- `terminalConnected`
+* successful SDK initialization
+* `TransactionManagerState.LOGGED_IN`
+* `terminalConnected`
 
-## Signaler som påverkar anslutning
+## Signals affecting connection state
 
-Manager-klassen lyssnar på:
+The manager listens to:
 
-- `paymentCompleted`
-- `communicationStatus`
-- `notificationEvents`
-- `shouldReconnect`
+* `paymentCompleted`
+* `communicationStatus`
+* `notificationEvents`
+* `shouldReconnect`
 
-Vid tappad anslutning sätts intern anslutningsstatus till `false`.
+When the connection is lost, the internal connection state is set to `false`.
 
-## Reconnect
+## Reconnection
 
-Reconnect körs med `Mutex` så att bara ett reconnect-flöde kör samtidigt.
+Reconnection is guarded by a `Mutex` to ensure only one reconnect flow runs at a time.
 
-Sekvens:
+Sequence:
 
-1. teardown av runtime
-2. initiering med senast sparade `TerminalConnectionConfig`
-3. väntan på initieringsresultat
+1. teardown of the runtime
+2. re-initialization using the last known `TerminalConnectionConfig`
+3. wait for initialization result
 4. login
-5. publicering av device-information
-6. anslutningsstatus sätts till `true`
+5. publish device information
+6. set connection state to `true`
 
-## Utvecklarregel
+## Development rule
 
-Ny reconnect-logik ska läggas här eller i `SdkRuntime` beroende på om den handlar
-om anslutningspolicy eller SDK-event. Den ska inte läggas i UI, ViewModels eller
-funktionsspecifika payment-metoder.
+New reconnection logic should be placed here or in `SdkRuntime`, depending on whether it concerns connection policy or SDK events. It should not be implemented in UI, ViewModels, or payment-specific methods.

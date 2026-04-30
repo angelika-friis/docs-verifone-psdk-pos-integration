@@ -1,12 +1,12 @@
 # Refund
 
-**Målgrupp:** konsument av integrationslagret.
+**Target audience:** consumers of the integration layer.
 
-Den här sidan beskriver bara refund-specifikt beteende. API-signaturer finns i
-[TerminalApi](../api/terminal-api.md) och resultatmodeller i
-[Felhantering](../error-handling.md).
+This page describes refund-specific behavior only. API signatures are defined in
+[TerminalApi](../api/terminal-api.md), and result models in
+[Error Handling](../error-handling.md).
 
-## Obunden refund
+## Unlinked refund
 
 ```kotlin
 val result = ApiModule.terminal.refundUnlinked(
@@ -16,21 +16,19 @@ val result = ApiModule.terminal.refundUnlinked(
 )
 ```
 
-Belopp anges i minor units.
+Amounts are specified in minor units.
 
-## Kortkontroll
+## Card verification
 
-När `skipCardCheck` är `false` försöker integrationen läsa kortet och jämföra
-BIN samt sista fyra siffror mot `originalMaskedPan`.
+When `skipCardCheck` is `false`, the integration attempts to read the card and compare the BIN and last four digits against `originalMaskedPan`.
 
-Möjliga refund-specifika fel:
+Possible refund-specific errors:
 
-- `CardReadFailed`
-- `WrongCard`
+* `CardReadFailed`
+* `WrongCard`
 
-När `skipCardCheck` är `true` går integrationen direkt till refund-kommandot.
+When `skipCardCheck` is `true`, the integration proceeds directly to the refund command.
 
-## Ansvar hos app-lagret
+## Responsibilities of the application layer
 
-Det här är en obunden refund. App-lagret ansvarar för att avgöra om refund får
-göras enligt affärsregler och sparad originaltransaktion.
+This is an unlinked refund. The application layer is responsible for determining whether a refund is allowed based on business rules and the stored original transaction.
