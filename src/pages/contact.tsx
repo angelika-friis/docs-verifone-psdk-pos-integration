@@ -6,31 +6,34 @@ const people = [
   {
     name: <>Johannes <br /> Lindgren</>,
     image: 'https://johannesl2.netlify.app/assets/image.webp',
-    email: <a href="https://johannesl2.netlify.app/" target="_blank" rel="noreferrer">Portfolio</a>,
+    portfolio: 'https://johannesl2.netlify.app/',
     linkedin: 'https://www.linkedin.com/in/lindgren-johannes/',
     github: 'https://github.com/johannesL2',
-    isJohannes: true,
+    quote: '"Good code is its own best documentation." — Steve McConnell'
   },
   {
     name: 'Angelika Friis',
     image: '/img/person2.png',
-    email: 'person2@email.com',
+    portfolio: 'person2@email.com',
     linkedin: 'https://linkedin.com',
     github: 'https://github.com',
+    quote: ''
   },
   {
     name: 'Roza Belay',
     image: '/img/person3.png',
-    email: 'person3@email.com',
+    portfolio: 'person3@email.com',
     linkedin: 'https://linkedin.com',
     github: 'https://github.com',
+    quote: ''
   },
   {
     name: 'Ewa',
     image: '/img/person4.png',
-    email: 'person4@email.com',
+    portfolio: 'person4@email.com',
     linkedin: 'https://linkedin.com',
     github: 'https://github.com',
+    quote: ''
   },
 ];
 
@@ -57,16 +60,18 @@ export default function Contact() {
               />
 
               <h3 className={styles.name}>{person.name}</h3>
-              <p className={styles.email}>{person.email}</p>
+              <p className={styles.quote}>{person.quote}</p>
 
               <div className={styles.links}>
                 <a href={person.linkedin} target="_blank" rel="noreferrer">
                   LinkedIn
                 </a>
 
-                {!person.isJohannes && (
-                <a href={`mailto:${person.email}`}>Email</a>
-                )}
+    
+                <a href={person.portfolio} target="_blank" rel="noreferrer">
+                  Portfolio
+                </a>
+
                 <a href={person.github} target="_blank" rel="noreferrer">
                   GitHub
                 </a>
