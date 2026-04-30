@@ -3,7 +3,7 @@
 **Target audience:** consumers of the integration layer.
 
 Use this page for payment-specific behavior. Method signatures are defined in
-[TerminalApi](../api/terminal-api.md), and result models in
+[TerminalApi](../terminal-api.md), and result models in
 [Error Handling](../error-handling.md).
 
 ## Standard payment

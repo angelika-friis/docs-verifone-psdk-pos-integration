@@ -136,7 +136,7 @@ const config: Config = {
           items: [
            {
   label: 'Contact us',
-  to: '/Contact',
+  to: '/contact',
 },
             {
               label: 'Kom igång',

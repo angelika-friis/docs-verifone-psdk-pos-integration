@@ -3,7 +3,7 @@
 **Target audience:** developers building a POS application using the integration layer.
 
 This page describes the low-level configuration used when building your own POS application.
-If you are using the provided POS app, see [run-pos-app.md](run-pos-app.md) instead.
+If you are using the provided POS app, see [run-pos-app.md](../run-pos/run-pos-app.md) instead.
 
 Configuration must be completed before calling `ApiModule.start(scope)`.  
 After startup, the terminal type and connection configuration must not be changed.
@@ -66,4 +66,4 @@ This disables real terminal communication and returns successful responses for p
 
 `ApiModule.start(scope)` does not block until the terminal is ready.
 Consume `terminalReady` and `terminalConnected` as described in
-[State and flows](api/state-and-flows.md).
+[State and flows](state-and-flows.md).

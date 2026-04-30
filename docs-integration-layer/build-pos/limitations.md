@@ -10,7 +10,7 @@ These are constraints that the application layer must be aware of.
 * Terminal configuration cannot be changed after `ApiModule.start(scope)`.
 * `ApiModule.start(scope)` is asynchronous; use `terminalReady`.
 
-Startup and configuration are described in [Quick Start](quick-start.md) and [Configuration](configuration.md).
+Startup and configuration are described in [Quick Start](build-pos-app.md) and [Configuration](configure-terminal.md).
 
 ## Operations
 

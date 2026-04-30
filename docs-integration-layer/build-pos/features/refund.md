@@ -3,7 +3,7 @@
 **Target audience:** consumers of the integration layer.
 
 This page describes refund-specific behavior only. API signatures are defined in
-[TerminalApi](../api/terminal-api.md), and result models in
+[TerminalApi](../terminal-api.md), and result models in
 [Error Handling](../error-handling.md).
 
 ## Unlinked refund

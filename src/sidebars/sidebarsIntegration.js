@@ -45,7 +45,6 @@ export default {
       label: 'Develop integration layer',
       items: [
         'integration-development/architecture',
-        'integration-development/internal-overview',
         {
           type: 'category',
           label: 'Lifecycle',

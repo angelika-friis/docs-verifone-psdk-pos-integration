@@ -45,7 +45,7 @@ Log entries from the integration layer for debug views, support, and troubleshoo
 val scannedCode: Flow<String>
 ```
 
-Scanner results. Scanner initialization and usage are described in [Scanner](../features/scanner.md).
+Scanner results. Scanner initialization and usage are described in [Scanner](features/scanner.md).
 
 ## Example
 

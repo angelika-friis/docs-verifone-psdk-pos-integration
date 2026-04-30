@@ -24,7 +24,7 @@ suspend fun teardownTerminal(): Boolean
 ```
 
 `startTerminal(...)` is owned by `ApiModule` in typical application code.
-Startup order is described in [Quick Start](../quick-start.md).
+Startup order is described in [Quick Start](build-pos-app.md).
 
 ## Payments
 
@@ -42,11 +42,11 @@ fun abortPayment()
 
 Function-specific usage is described in:
 
-* [Payments](../features/payments.md)
-* [Refund](../features/refund.md)
-* [Void](../features/void.md)
+* [Payments](features/payments.md)
+* [Refund](features/refund.md)
+* [Void](features/void.md)
 
-Results and errors are described in [Error Handling](../error-handling.md).
+Results and errors are described in [Error Handling](error-handling.md).
 
 ## Scanner
 
@@ -55,7 +55,7 @@ fun initializeScanner()
 fun startScanner(activity: Activity, behavior: ScanBehavior)
 ```
 
-Usage is described in [Scanner](../features/scanner.md).
+Usage is described in [Scanner](features/scanner.md).
 
 ## Printing
 
@@ -65,4 +65,4 @@ suspend fun initializeEpsonPrinter(): PrintResult
 suspend fun printEpson(data: EpsonPrintData): PrintResult
 ```
 
-Usage is described in [Receipt Printing](../features/receipt-printing.md).
+Usage is described in [Receipt Printing](features/receipt-printing.md).

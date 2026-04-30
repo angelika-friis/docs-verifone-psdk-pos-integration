@@ -29,8 +29,7 @@ The features are described separately:
 
 Known limitations are listed in [Limitations](build-pos/limitations.md).
 
-Internal architecture and implementation are described in [Architecture](integration-development/architecture.md) and  
-[Internal overview](integration-development/internal/overview.md). These documents are intended for developers of the integration layer.
+Internal architecture and implementation are described in [Architecture](integration-development/architecture.md). This document is intended for developers of the integration layer.
 
-Handle state according to [State and flows](api/state-and-flows.md).
+Handle state according to [State and flows](build-pos/state-and-flows.md).
 Handle results and errors according to [Error handling](build-pos/error-handling.md).

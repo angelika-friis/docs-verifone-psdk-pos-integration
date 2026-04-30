@@ -9,7 +9,7 @@ All public terminal operations return models from `api.model`. The application l
 * `Success`
 * `Failure(errorMessage)`
 
-Normal startup is performed via `ApiModule.start(scope)`, see [Quick Start](quick-start.md).
+Normal startup is performed via `ApiModule.start(scope)`, see [Quick Start](build-pos-app.md).
 
 ## PaymentResult
 

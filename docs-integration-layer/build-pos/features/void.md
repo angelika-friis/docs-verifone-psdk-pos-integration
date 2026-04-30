@@ -3,7 +3,7 @@
 **Target audience:** consumers of the integration layer.
 
 Void cancels a previous payment using the `appSpecificData` from the original transaction. API signatures are defined in
-[TerminalApi](../api/terminal-api.md).
+[TerminalApi](../terminal-api.md).
 
 ## Usage
 
