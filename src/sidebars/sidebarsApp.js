@@ -5,7 +5,7 @@ export default {
     'app/architecture',
     {
       type: 'category',
-      label: 'UI komponenter',
+      label: 'UI components',
       items: [
         'app/UI Components/Base/Buttons',
         'app/UI Components/Cart/Cart Bar',
@@ -16,7 +16,7 @@ export default {
     },
     {
       type: 'category',
-      label: 'Databas',
+      label: 'Database',
       items: [
         'app/Database/Intro',
         'app/Database/Room',
