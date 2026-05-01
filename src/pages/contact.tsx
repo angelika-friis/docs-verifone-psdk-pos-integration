@@ -4,7 +4,7 @@ import styles from './contact.module.css';
 
 const people = [
   {
-    name: <>Johannes <br /> Lindgren</>,
+    name: "Johannes Lindgren",
     image: 'https://johannesl2.netlify.app/assets/image.webp',
     portfolio: 'https://johannesl2.netlify.app/',
     linkedin: 'https://www.linkedin.com/in/lindgren-johannes/',
@@ -13,11 +13,11 @@ const people = [
   },
   {
     name: 'Angelika Friis',
-    image: '/img/person2.png',
-    portfolio: 'person2@email.com',
-    linkedin: 'https://linkedin.com',
-    github: 'https://github.com',
-    quote: ''
+    image: '/img/person2.jpeg',
+    portfolio: 'https://github.com/angelika-friis',
+    linkedin: 'https://linkedin.com/in/angelika-friis/',
+    github: 'https://github.com/angelika-friis',
+    quote: '"Do it scared. Do it unsure. Just do it."'
   },
   {
     name: 'Roza Belay',
@@ -66,7 +66,7 @@ export default function Contact() {
                   LinkedIn
                 </a>
 
-    
+
                 <a href={person.portfolio} target="_blank" rel="noreferrer">
                   Portfolio
                 </a>
