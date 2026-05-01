@@ -90,21 +90,21 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'docs',
           docsPluginId: 'integration',
-          label: 'Integrations lager',
+          label: 'Integration',
           position: 'left',
         },
-      {
-  to: '/about',
-  label: 'About us',
-  position: 'left',
-},
-{
-  to: '/contact',
-  label: 'Contact us',
-  position: 'left',
-},
         {
-          href: 'https://github.com/JohannesL2/terminal-ux700',
+          to: '/about',
+          label: 'About us',
+          position: 'left',
+        },
+        {
+          to: '/contact',
+          label: 'Contact us',
+          position: 'left',
+        },
+        {
+          href: 'https://github.com/angelika-friis/pos-integration-demo',
           label: 'GitHub',
           position: 'right',
         },
@@ -127,20 +127,20 @@ const config: Config = {
           items: [
             {
               label: 'GitHub',
-              href: 'https://github.com/JohannesL2/terminal-ux700',
+              href: 'https://github.com/angelika-friis/pos-integration-demo',
             },
           ],
         },
         {
           title: 'Explore',
           items: [
-           {
-  label: 'Contact us',
-  to: '/contact',
-},
             {
-              label: 'Kom igång',
-              to: '/docs/app/intro',
+              label: 'Contact us',
+              to: '/contact',
+            },
+            {
+              label: 'Setup',
+              to: '/docs/integration/run-pos/run-pos-app',
             },
           ],
         },
