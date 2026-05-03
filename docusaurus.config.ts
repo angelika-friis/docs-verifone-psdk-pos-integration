@@ -95,7 +95,7 @@ const config: Config = {
         },
         {
           to: '/about',
-          label: 'About us',
+          label: 'About',
           position: 'left',
         },
         {

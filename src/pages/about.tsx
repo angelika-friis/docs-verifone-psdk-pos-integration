@@ -24,7 +24,7 @@ export default function AboutPage(): ReactNode {
     <Layout title="About us" description="About the POS app and the integration focus behind the documentation.">
       <main className={styles.page}>
         <section className={styles.hero}>
-          <p className={styles.eyebrow}>ABOUT US</p>
+          <p className={styles.eyebrow}>ABOUT THE PROJECT</p>
          <Heading as="h1">
   Integrating POS systems, payment terminals, and business logic into one consistent flow.
 </Heading>

@@ -739,6 +739,7 @@ color: #f8fafc;
   .ctaCard,
   .heroVisuals {
     grid-template-columns: 1fr;
+    margin-top: 0rem;
   }
 
   .heroVisuals {
@@ -768,5 +769,11 @@ color: #f8fafc;
   .actions {
     flex-direction: column;
     align-items: stretch;
+  }
+}
+
+@media (max-width: 410px) {
+  .heroVisuals {
+    display: none;
   }
 }
