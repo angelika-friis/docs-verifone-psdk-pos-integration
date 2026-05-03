@@ -284,7 +284,6 @@ color: #f8fafc;
 .visualCard {
   position: relative;
   margin: 0;
-  height: 20rem;
   border-radius: 1.8rem;
   background: #ffffff;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
@@ -304,7 +303,9 @@ color: #f8fafc;
 .visualCard img {
   display: block;
   width: 100%;
-  height: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
   border-radius: 1.2rem;
 }
 
@@ -312,8 +313,7 @@ color: #f8fafc;
   .visualCard {
     border-radius: 1.2rem;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
-    margin-bottom: 3rem; 
-    height: 18rem;
+    margin-bottom: 2rem; 
   }
   .visualCard:hover {
     transform: none;
