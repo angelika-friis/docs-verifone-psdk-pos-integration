@@ -285,8 +285,7 @@ color: #f8fafc;
   position: relative;
   margin: 0;
   border-radius: 1.8rem;
-  background: #ffffff;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  background: transparent;
   transition: transform 0.3s ease;
   z-index: 1;
 }
@@ -296,8 +295,7 @@ color: #f8fafc;
 }
 
 [data-theme='dark'] .visualCard {
-  background: #1e293b;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  background: transparent;
 }
 
 .visualCard img {
@@ -307,14 +305,27 @@ color: #f8fafc;
   aspect-ratio: 16 / 9;
   object-fit: contain;
   border-radius: 1.2rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme='dark'] .visualCard img {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
 @media (max-width: 768px) {
   .visualCard {
     border-radius: 1.2rem;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
     margin-bottom: 2rem; 
   }
+
+  .visualCard img {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+  }
+
+  [data-theme='dark'] .visualCard img {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  }
+
   .visualCard:hover {
     transform: none;
   }

@@ -1,5 +1,5 @@
-import type {ReactNode} from 'react';
-import React, {useState, useEffect, useRef} from 'react';
+import type { ReactNode } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
@@ -31,11 +31,11 @@ const flowSteps = [
     title: 'Choose your payment mode',
     text: 'Use on-device checkout for in-app payments or off-device terminal handling for external processing.',
   },
-{
-  step: '03',
-  title: 'Integrate and scale the app',
-  text: 'The integration layer is built to be POS-agnostic, allowing any POS application—such as Gardeco—to integrate it directly into its checkout system. It is designed to work seamlessly with the general app architecture, making it easy to extend and deploy across different environments.',
-}
+  {
+    step: '03',
+    title: 'Integrate and scale the app',
+    text: 'The integration layer is built to be POS-agnostic, allowing any POS application—such as Gardeco—to integrate it directly into its checkout system. It is designed to work seamlessly with the general app architecture, making it easy to extend and deploy across different environments.',
+  }
 ];
 
 const techStack = [
@@ -43,7 +43,7 @@ const techStack = [
   { name: 'Kotlin', slug: 'kotlin' },
   { name: 'Compose', slug: 'jetpackcompose' },
   { name: 'SQLite/Room', slug: 'sqlite' },
-  { name: 'Dagger', isEmoji: true, char: '⚔️'},
+  { name: 'Dagger', isEmoji: true, char: '⚔️' },
   { name: 'Ktor', slug: 'ktor' },
   { name: 'Lottie', slug: 'lottiefiles' }
 ];
@@ -98,9 +98,9 @@ export default function Home(): ReactNode {
                 A smooth payment experience for on-device and off-device flows.
               </Heading>
 
-            <p className={styles.lead}>
-  We present a Point of Sale (POS) application developed in Kotlin for the Android operating system. The system is available in two versions: an on-device version, which is installed directly on an Android-based payment terminal with a touchscreen, and an off-device version, which runs on a larger external display, such as an iPad, and connects to a payment terminal.
-</p>
+              <p className={styles.lead}>
+                We present a Point of Sale (POS) application developed in Kotlin for the Android operating system. The system is available in two versions: an on-device version, which is installed directly on an Android-based payment terminal with a touchscreen, and an off-device version, which runs on a larger external display, such as an iPad, and connects to a payment terminal.
+              </p>
 
               <div className={styles.actions}>
                 <Link className="button button--primary button--lg" to="/docs/integration/run-pos/run-pos-app">
@@ -120,11 +120,11 @@ export default function Home(): ReactNode {
             </div>
 
             <div className={styles.heroVisuals}>
-              <img 
-              src="/img/app_icon.png" 
-              alt="POS App Icon" 
-              className={styles.heroAppIcon} 
-            />
+              <img
+                src="/img/app_icon.png"
+                alt="POS App Icon"
+                className={styles.heroAppIcon}
+              />
 
               <figure className={styles.visualCard} onClick={() => setZoomedImage('/img/hero/off-device.png')}>
                 <img src="/img/hero/off-device.png" alt="Off-device payment flow preview" />
@@ -156,26 +156,26 @@ export default function Home(): ReactNode {
         </section>
 
         <section className={styles.marqueeSection}>
-  <div className={styles.marqueeContainer}>
-    <div className={styles.marqueeContent}>
-      {/* Vi mappar listan två gånger för att skapa en sömlös loop */}
-      {[...techStack, ...techStack].map((tech, index) => (
-        <div key={index} className={styles.techItem}>
-  {tech.isEmoji ? (
-    <span className={styles.techEmojiIcon}>{tech.char}</span>
-  ) : (
-    <img 
-      src={`https://cdn.simpleicons.org/${tech.slug}/${tech.color}`} 
-      alt={tech.name}
-      className={styles.techIconImage}
-    />
-  )}
-  <span className={styles.techName}>{tech.name}</span>
-</div>
-      ))}
-    </div>
-  </div>
-</section>
+          <div className={styles.marqueeContainer}>
+            <div className={styles.marqueeContent}>
+              {/* Vi mappar listan två gånger för att skapa en sömlös loop */}
+              {[...techStack, ...techStack].map((tech, index) => (
+                <div key={index} className={styles.techItem}>
+                  {tech.isEmoji ? (
+                    <span className={styles.techEmojiIcon}>{tech.char}</span>
+                  ) : (
+                    <img
+                      src={`https://cdn.simpleicons.org/${tech.slug}`}
+                      alt={tech.name}
+                      className={styles.techIconImage}
+                    />
+                  )}
+                  <span className={styles.techName}>{tech.name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
         <section className={styles.section}>
           <div className={styles.sectionHeading}>
