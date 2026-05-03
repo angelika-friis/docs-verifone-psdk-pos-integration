@@ -5,7 +5,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 const config: Config = {
   title: 'POS App',
   tagline: 'Documentation for the Verifone POS integration',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/app_icon.png',
 
   future: {
     v4: true,
