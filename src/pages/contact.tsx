@@ -22,9 +22,9 @@ const people = [
   {
     name: 'Roza Belay',
     image: '/img/person3.png',
-    portfolio: 'person3@email.com',
+    portfolio: 'https://roza-belay-portfolio.netlify.app/',
     linkedin: 'https://linkedin.com',
-    github: 'https://github.com',
+    github: 'https://github.com/roza-belay',
     quote: ''
   },
   {
